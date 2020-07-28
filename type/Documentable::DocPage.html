@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>role Documentable::DocPage</title>
+    <meta charset="UTF-8"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Documentable/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/Documentable/css/app.css" media="screen" title="default" />
+    <noscript> <style> #search { visibility: hidden; } </style> </noscript>
+</head>
+
+<body class="pod">
+
+    <div id="___top"></div>
+
+    <div id="header" class="pretty-box green">
+
+        <a href="/Documentable/">
+            <img src="/Documentable/images/Camelia.svg"alt="»ö«"id="logo"width="62"height="48"/> &nbsp;Raku Documentation
+        </a>
+
+        <div id="search" class="ui-widget">
+            <div class="green">
+                <input placeholder="Loading..." id="query" accesskey="f" title="Enter term to search for (hit Esc to focus)"/>
+            </div>
+            <p id="not-found-message">
+                Not in Index (<a href="" id="try-web-search">try site search</a>)
+            </p>
+        </div>
+        
+        <div class="menu">
+            
+            <div class="menu-items dark-green">
+                <a class='menu-item darker-green' href='https://raku.org'><strong>Raku homepage</strong></a>
+                    <a class="menu-item " href="/Documentable/language.html"> Language </a>
+                    <a class="menu-item selected darker-green" href="/Documentable/type.html"> Types </a>
+                    <a class="menu-item " href="/Documentable/routine.html"> Routines </a>
+                    <a class="menu-item " href="https://webchat.freenode.net/?channels=#raku"> Chat with us </a>
+            </div>
+            
+            <div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green">
+                    <a class="menu-item" href="/Documentable/type.html"> All </a>
+                    <a class="menu-item" href="/Documentable/type-basic.html"> Basic </a>
+                    <a class="menu-item" href="/Documentable/type-html-generation.html"> HTML Generation </a>
+                    <a class="menu-item" href="/Documentable/type-exception.html"> Exceptions </a>
+            </div></div></div></div>
+        
+        </div>
+    </div>
+
+    <div id="content" class="pretty-box yellow content_fragment">
+
+        <div align="right" style="display:;">
+            <button title="Edit this page"  class="pencil" onclick="location='https://github.com/Raku/Documentable/tree/master/docs/Type/Documentable/DocPage.pod6'">
+                <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="pencil" fill="#000000">
+                            <path d="M0,12 L0,15 L3,15 L11,7 L8,4 L0,12 L0,12 Z M3,14 L1,14 L1,12 L2,12 L2,13 L3,13 L3,14 L3,14 Z M13.3,4.7 L12,6 L9,3 L10.3,1.7 C10.69,1.31 11.32,1.31 11.71,1.7 L13.3,3.29 C13.69,3.68 13.69,4.31 13.3,4.7 L13.3,4.7 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <h1 class="title">role Documentable::DocPage</h1>
+        <p class="subtitle">Pod to be rendered and its url</p>
+
+        <nav class="indexgroup">
+<table id="TOC">
+<caption><h2 id="TOC_Title">Table of Contents</h2></caption>
+     <tr class="toc-level-2"><td class="toc-number">0.1</td><td class="toc-text"><a href="#method_render">method render</a></td></tr>
+                   <tr class="toc-level-1"><td class="toc-number">1</td><td class="toc-text"><a href="#Type_Graph">Type Graph</a></td></tr>
+ 
+</table>
+</nav>
+
+        <div class="pod-body ">
+            <p>Defined as</p>
+<pre class="editor editor-colors"><div class="line"><span class="source perl6fe"><span class="meta class perl6fe"><span class="storage type class perl6fe"><span>role</span></span><span>&nbsp;</span><span class="entity name type class perl6fe"><span>Documentable::DocPage</span></span></span></span></div></pre><p>This role must be implemented by all classes that generate an HTML page.</p>
+<h2 id="method_render"><a class="u" href="#___top" title="go to top of document">method render</a></h2>
+<p>Defined as</p>
+<pre class="editor editor-colors"><div class="line"><span class="source perl6fe"><span class="storage type declarator type perl6fe"><span>method</span></span><span>&nbsp;</span><span class="entity name function perl6fe"><span>render</span></span><span>(</span><span class="keyword operator generic perl6fe"><span>|</span></span><span>&nbsp;</span><span class="keyword operator multi-symbol perl6fe"><span>--&gt;</span></span><span>&nbsp;</span><span class="support type perl6fe"><span>Hash</span></span><span>)&nbsp;</span><span class="meta block perl6fe"><span class="punctuation definition block perl6fe"><span>{</span></span><span>&nbsp;</span><span class="keyword operator multi-symbol perl6fe"><span>...</span></span><span>&nbsp;</span><span class="punctuation definition block perl6fe"><span>}</span></span></span></span></div></pre><p>It&#39;s an abstract method. It needs to return a <code>Hash</code> object following this format:</p>
+<pre class="editor editor-colors"><div class="line"><span class="source perl6fe"><span class="keyword operator generic perl6fe"><span>%</span></span><span>(</span></span></div><div class="line"><span class="source perl6fe"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string pair key perl6fe"><span>document&nbsp;</span></span><span class="keyword operator multi-symbol perl6fe"><span>=&gt;</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>pod</span></span><span>&nbsp;</span><span class="support function perl6fe"><span>to</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>be</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>rendered</span></span><span>&nbsp;</span><span class="storage modifier type constraints perl6fe"><span>as</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>HTML</span></span><span>,</span></span></div><div class="line"><span class="source perl6fe"><span>&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string pair key perl6fe"><span>url&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></span><span class="keyword operator multi-symbol perl6fe"><span>=&gt;</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>URL</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>assigned</span></span><span>&nbsp;</span><span class="support function perl6fe"><span>to</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>this</span></span><span>&nbsp;</span><span class="routine name perl6fe"><span>document</span></span></span></div><div class="line"><span class="source perl6fe"><span>)</span></span></div></pre><p>Returning the <code>pod</code> is necessary because we need to wrap it in a common HTML template (see <a href="/Documentable/type/Documentable::To::HTML::Wrapper">Documentable::To::HTML::Wrapper</a>).</p>
+<h1 id="Type_Graph"><a class="u" href="#___top" title="go to top of document">Type Graph</a></h1>
+<figure>
+  <figcaption>Type relations for <code>Documentable::DocPage</code></figcaption>
+  <svg width="4016pt" height="116pt"
+ viewBox="0.00 0.00 4016.32 116.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 112)">
+<title>perl6&#45;type&#45;graph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-112 4012.32,-112 4012.32,4 -4,4"/>
+<!-- Documentable::DocPage -->
+<g id="node1" class="node">
+<title>Documentable::DocPage</title>
+<g id="a_node1"><a xlink:href="/type/Documentable::DocPage" xlink:title="Documentable::DocPage">
+<ellipse fill="none" stroke="#6666ff" cx="2031.04" cy="-90" rx="113.18" ry="18"/>
+<text text-anchor="middle" x="2031.04" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Documentable::DocPage</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Secondary -->
+<g id="node2" class="node">
+<title>Documentable::DocPage::Secondary</title>
+<g id="a_node2"><a xlink:href="/type/Documentable::DocPage::Secondary" xlink:title="Documentable::DocPage::Secondary">
+<ellipse fill="none" stroke="#000000" cx="167.04" cy="-18" rx="167.07" ry="18"/>
+<text text-anchor="middle" x="167.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Secondary</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Secondary&#45;&gt;Documentable::DocPage -->
+<g id="edge1" class="edge">
+<title>Documentable::DocPage::Secondary&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M286.86,-30.57C318.03,-33.58 343.04,-36 343.04,-36 343.04,-36 1525.77,-73.14 1911.19,-85.24"/>
+<polygon fill="#000000" stroke="#000000" points="1911.15,-88.74 1921.26,-85.55 1911.37,-81.74 1911.15,-88.74"/>
+</g>
+<!-- Documentable::DocPage::Primary::Language -->
+<g id="node3" class="node">
+<title>Documentable::DocPage::Primary::Language</title>
+<g id="a_node3"><a xlink:href="/type/Documentable::DocPage::Primary::Language" xlink:title="Documentable::DocPage::Primary::Language">
+<ellipse fill="none" stroke="#000000" cx="558.04" cy="-18" rx="206.06" ry="18"/>
+<text text-anchor="middle" x="558.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Primary::Language</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Primary::Language&#45;&gt;Documentable::DocPage -->
+<g id="edge2" class="edge">
+<title>Documentable::DocPage::Primary::Language&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M705.01,-30.62C742.8,-33.61 773.04,-36 773.04,-36 773.04,-36 1600.48,-70.86 1913.23,-84.04"/>
+<polygon fill="#000000" stroke="#000000" points="1913.1,-87.53 1923.23,-84.46 1913.39,-80.54 1913.1,-87.53"/>
+</g>
+<!-- Documentable::DocPage::SubIndex::Routine -->
+<g id="node4" class="node">
+<title>Documentable::DocPage::SubIndex::Routine</title>
+<g id="a_node4"><a xlink:href="/type/Documentable::DocPage::SubIndex::Routine" xlink:title="Documentable::DocPage::SubIndex::Routine">
+<ellipse fill="none" stroke="#000000" cx="988.04" cy="-18" rx="206.06" ry="18"/>
+<text text-anchor="middle" x="988.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::SubIndex::Routine</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::SubIndex::Routine&#45;&gt;Documentable::DocPage -->
+<g id="edge3" class="edge">
+<title>Documentable::DocPage::SubIndex::Routine&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M1135.01,-30.62C1172.8,-33.61 1203.04,-36 1203.04,-36 1203.04,-36 1691.39,-67.26 1918,-81.76"/>
+<polygon fill="#000000" stroke="#000000" points="1918.06,-85.28 1928.26,-82.42 1918.5,-78.29 1918.06,-85.28"/>
+</g>
+<!-- Documentable::DocPage::Primary::Programs -->
+<g id="node5" class="node">
+<title>Documentable::DocPage::Primary::Programs</title>
+<g id="a_node5"><a xlink:href="/type/Documentable::DocPage::Primary::Programs" xlink:title="Documentable::DocPage::Primary::Programs">
+<ellipse fill="none" stroke="#000000" cx="1418.04" cy="-18" rx="206.06" ry="18"/>
+<text text-anchor="middle" x="1418.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Primary::Programs</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Primary::Programs&#45;&gt;Documentable::DocPage -->
+<g id="edge4" class="edge">
+<title>Documentable::DocPage::Primary::Programs&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M1537.68,-32.66C1652.61,-45.79 1824.23,-65.38 1931.79,-77.67"/>
+<polygon fill="#000000" stroke="#000000" points="1931.66,-81.17 1941.99,-78.83 1932.45,-74.22 1931.66,-81.17"/>
+</g>
+<!-- Documentable::DocPage::Index::Routine -->
+<g id="node6" class="node">
+<title>Documentable::DocPage::Index::Routine</title>
+<g id="a_node6"><a xlink:href="/type/Documentable::DocPage::Index::Routine" xlink:title="Documentable::DocPage::Index::Routine">
+<ellipse fill="none" stroke="#000000" cx="1833.04" cy="-18" rx="191.17" ry="18"/>
+<text text-anchor="middle" x="1833.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Index::Routine</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Index::Routine&#45;&gt;Documentable::DocPage -->
+<g id="edge5" class="edge">
+<title>Documentable::DocPage::Index::Routine&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M1879.71,-35.5C1908.9,-45.82 1946.62,-59.16 1977.1,-69.93"/>
+<polygon fill="#000000" stroke="#000000" points="1976.12,-73.3 1986.72,-73.33 1978.45,-66.7 1976.12,-73.3"/>
+</g>
+<!-- Documentable::DocPage::Primary::Type -->
+<g id="node7" class="node">
+<title>Documentable::DocPage::Primary::Type</title>
+<g id="a_node7"><a xlink:href="/type/Documentable::DocPage::Primary::Type" xlink:title="Documentable::DocPage::Primary::Type">
+<ellipse fill="none" stroke="#000000" cx="2229.04" cy="-18" rx="186.57" ry="18"/>
+<text text-anchor="middle" x="2229.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Primary::Type</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Primary::Type&#45;&gt;Documentable::DocPage -->
+<g id="edge6" class="edge">
+<title>Documentable::DocPage::Primary::Type&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M2182.36,-35.5C2153.17,-45.82 2115.45,-59.16 2084.98,-69.93"/>
+<polygon fill="#000000" stroke="#000000" points="2083.62,-66.7 2075.36,-73.33 2085.95,-73.3 2083.62,-66.7"/>
+</g>
+<!-- Documentable::DocPage::SubIndex::Type -->
+<g id="node8" class="node">
+<title>Documentable::DocPage::SubIndex::Type</title>
+<g id="a_node8"><a xlink:href="/type/Documentable::DocPage::SubIndex::Type" xlink:title="Documentable::DocPage::SubIndex::Type">
+<ellipse fill="none" stroke="#000000" cx="2625.04" cy="-18" rx="191.17" ry="18"/>
+<text text-anchor="middle" x="2625.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::SubIndex::Type</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::SubIndex::Type&#45;&gt;Documentable::DocPage -->
+<g id="edge7" class="edge">
+<title>Documentable::DocPage::SubIndex::Type&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M2510.86,-32.46C2400.18,-45.5 2234.08,-65.07 2129.19,-77.43"/>
+<polygon fill="#000000" stroke="#000000" points="2128.75,-73.96 2119.23,-78.61 2129.57,-80.91 2128.75,-73.96"/>
+</g>
+<!-- Documentable::DocPage::Index::Language -->
+<g id="node9" class="node">
+<title>Documentable::DocPage::Index::Language</title>
+<g id="a_node9"><a xlink:href="/type/Documentable::DocPage::Index::Language" xlink:title="Documentable::DocPage::Index::Language">
+<ellipse fill="none" stroke="#000000" cx="3030.04" cy="-18" rx="196.07" ry="18"/>
+<text text-anchor="middle" x="3030.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Index::Language</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Index::Language&#45;&gt;Documentable::DocPage -->
+<g id="edge8" class="edge">
+<title>Documentable::DocPage::Index::Language&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M2889.9,-30.62C2853.86,-33.61 2825.04,-36 2825.04,-36 2825.04,-36 2362.46,-66.88 2143.45,-81.5"/>
+<polygon fill="#000000" stroke="#000000" points="2142.96,-78.02 2133.21,-82.18 2143.42,-85.01 2142.96,-78.02"/>
+</g>
+<!-- Documentable::DocPage::Index::Type -->
+<g id="node10" class="node">
+<title>Documentable::DocPage::Index::Type</title>
+<g id="a_node10"><a xlink:href="/type/Documentable::DocPage::Index::Type" xlink:title="Documentable::DocPage::Index::Type">
+<ellipse fill="none" stroke="#000000" cx="3421.04" cy="-18" rx="176.57" ry="18"/>
+<text text-anchor="middle" x="3421.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Index::Type</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Index::Type&#45;&gt;Documentable::DocPage -->
+<g id="edge9" class="edge">
+<title>Documentable::DocPage::Index::Type&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M3294.4,-30.57C3261.46,-33.58 3235.04,-36 3235.04,-36 3235.04,-36 2451.41,-70.5 2148.54,-83.83"/>
+<polygon fill="#000000" stroke="#000000" points="2148.25,-80.34 2138.41,-84.27 2148.56,-87.33 2148.25,-80.34"/>
+</g>
+<!-- Documentable::DocPage::Index::Programs -->
+<g id="node11" class="node">
+<title>Documentable::DocPage::Index::Programs</title>
+<g id="a_node11"><a xlink:href="/type/Documentable::DocPage::Index::Programs" xlink:title="Documentable::DocPage::Index::Programs">
+<ellipse fill="none" stroke="#000000" cx="3812.04" cy="-18" rx="196.07" ry="18"/>
+<text text-anchor="middle" x="3812.04" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Documentable::DocPage::Index::Programs</text>
+</a>
+</g>
+</g>
+<!-- Documentable::DocPage::Index::Programs&#45;&gt;Documentable::DocPage -->
+<g id="edge10" class="edge">
+<title>Documentable::DocPage::Index::Programs&#45;&gt;Documentable::DocPage</title>
+<path fill="none" stroke="#000000" d="M3671.9,-30.62C3635.86,-33.61 3607.04,-36 3607.04,-36 3607.04,-36 2517.86,-72.63 2150.42,-84.99"/>
+<polygon fill="#000000" stroke="#000000" points="2150.17,-81.49 2140.29,-85.33 2150.41,-88.49 2150.17,-81.49"/>
+</g>
+</g>
+</svg>
+
+  <p class="fallback">
+    <a
+      rel="alternate"
+      href="/images/type-graph-Documentable%3A%3ADocPage.svg"
+      type="image/svg+xml"
+      >Expand above chart</a
+    >
+  </p>
+</figure>
+
+        </div>
+    </div>
+
+    
+
+    <footer class="pretty-box yellow">
+        <p>
+            Generated from <a href="https://github.com/Raku/Documentable/tree/master/docs/Type/Documentable/DocPage.pod6">https://github.com/Raku/Documentable/tree/master/docs/Type/Documentable/DocPage.pod6</a>.
+        </p>
+        <p>
+            This is a work in progress to document Raku (formerly known as Perl 6), and
+            known to be incomplete.
+        </p>
+        <p>
+            <a href="https://github.com/raku/doc/blob/master/CONTRIBUTING.md#reporting-bugs">
+                Please report any issues
+            </a>
+            Your contribution is appreciated.
+        </p>
+        <p>
+            This documentation is provided under the terms of the
+            <a href="https://raw.githubusercontent.com/raku/doc/master/LICENSE">
+                Artistic License 2.0
+            </a>. The Camelia image is
+            <a href="https://raw.githubusercontent.com/raku/mu/master/misc/camelia.txt">
+                copyright © 2009 by Larry Wall.
+            </a>
+            <!-- CREDITS -->
+            <!--External Link Image by Zapyon, CCA-SA 4.0. Derived from Wikimedia Foundation https://commons.wikimedia.org/wiki/File:External-link-04-bold-12x12.svg -->
+        </p>
+    </footer>
+
+    <script type="text/javascript" src="/Documentable/js/app.js?v=1"></script>
+    <script type="text/javascript" src="/Documentable/js/search.js?v=3"></script>
+</body>
+</html>
+

@@ -1,0 +1,650 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>role Numeric</title>
+    <meta charset="UTF-8"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Documentable/integration-test/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/Documentable/integration-test/css/app.css" media="screen" title="default" />
+    <noscript> <style> #search { visibility: hidden; } </style> </noscript>
+</head>
+
+<body class="pod">
+
+    <div id="___top"></div>
+
+    <div id="header" class="pretty-box green">
+
+        <a href="/Documentable/integration-test/">
+            <img src="/Documentable/integration-test/images/Camelia.svg"alt="»ö«"id="logo"width="62"height="48"/> &nbsp;Raku Documentation
+        </a>
+
+        <div id="search" class="ui-widget">
+            <div class="green">
+                <input placeholder="Loading..." id="query" accesskey="f" title="Enter term to search for (hit Esc to focus)"/>
+            </div>
+            <p id="not-found-message">
+                Not in Index (<a href="" id="try-web-search">try site search</a>)
+            </p>
+        </div>
+        
+        <div class="menu">
+            
+            <div class="menu-items dark-green">
+                <a class='menu-item darker-green' href='https://raku.org'><strong>Raku homepage</strong></a>
+                    <a class="menu-item " href="/Documentable/integration-test/language.html"> Language </a>
+                    <a class="menu-item selected darker-green" href="/Documentable/integration-test/type.html"> Types </a>
+                    <a class="menu-item " href="/Documentable/integration-test/routine.html"> Routines </a>
+                    <a class="menu-item " href="https://webchat.freenode.net/?channels=#raku"> Chat with us </a>
+            </div>
+            
+            <div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green">
+                    <a class="menu-item" href="/Documentable/integration-test/type.html"> All </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-basic.html"> Basic </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-html-generation.html"> HTML Generation </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-exception.html"> Exceptions </a>
+            </div></div></div></div>
+        
+        </div>
+    </div>
+
+    <div id="content" class="pretty-box yellow content_fragment">
+
+        <div align="right" style="display:;">
+            <button title="Edit this page"  class="pencil" onclick="location='https://github.com/Raku/doc/tree/master/docs/Type/Numeric.pod6'">
+                <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="pencil" fill="#000000">
+                            <path d="M0,12 L0,15 L3,15 L11,7 L8,4 L0,12 L0,12 Z M3,14 L1,14 L1,12 L2,12 L2,13 L3,13 L3,14 L3,14 Z M13.3,4.7 L12,6 L9,3 L10.3,1.7 C10.69,1.31 11.32,1.31 11.71,1.7 L13.3,3.29 C13.69,3.68 13.69,4.31 13.3,4.7 L13.3,4.7 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <h1 class="title">role Numeric</h1>
+        <p class="subtitle">Number or object that can act as a number</p>
+
+        <nav class="indexgroup">
+<table id="TOC">
+<caption><h2 id="TOC_Title">Table of Contents</h2></caption>
+                         <tr class="toc-level-1"><td class="toc-number">1</td><td class="toc-text"><a href="#Methods">Methods</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-number">1.1</td><td class="toc-text"><a href="#method_Numeric">method Numeric</a></td></tr>
+          <tr class="toc-level-2"><td class="toc-number">1.2</td><td class="toc-text"><a href="#method_Int">method Int</a></td></tr>
+               <tr class="toc-level-2"><td class="toc-number">1.3</td><td class="toc-text"><a href="#method_Rat">method Rat</a></td></tr>
+               <tr class="toc-level-2"><td class="toc-number">1.4</td><td class="toc-text"><a href="#method_Num">method Num</a></td></tr>
+             <tr class="toc-level-2"><td class="toc-number">1.5</td><td class="toc-text"><a href="#method_narrow">method narrow</a></td></tr>
+    <tr class="toc-level-2"><td class="toc-number">1.6</td><td class="toc-text"><a href="#method_ACCEPTS">method ACCEPTS</a></td></tr>
+             <tr class="toc-level-2"><td class="toc-number">1.7</td><td class="toc-text"><a href="#routine_log">routine log</a></td></tr>
+             <tr class="toc-level-2"><td class="toc-number">1.8</td><td class="toc-text"><a href="#routine_log10">routine log10</a></td></tr>
+         <tr class="toc-level-2"><td class="toc-number">1.9</td><td class="toc-text"><a href="#routine_log2">routine log2</a></td></tr>
+         <tr class="toc-level-2"><td class="toc-number">1.10</td><td class="toc-text"><a href="#routine_exp">routine exp</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">1.11</td><td class="toc-text"><a href="#method_roots">method roots</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">1.12</td><td class="toc-text"><a href="#routine_abs">routine abs</a></td></tr>
+   <tr class="toc-level-2"><td class="toc-number">1.13</td><td class="toc-text"><a href="#routine_sqrt">routine sqrt</a></td></tr>
+            <tr class="toc-level-2"><td class="toc-number">1.14</td><td class="toc-text"><a href="#method_conj">method conj</a></td></tr>
+   <tr class="toc-level-2"><td class="toc-number">1.15</td><td class="toc-text"><a href="#method_Bool">method Bool</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">1.16</td><td class="toc-text"><a href="#method_succ">method succ</a></td></tr>
+   <tr class="toc-level-2"><td class="toc-number">1.17</td><td class="toc-text"><a href="#method_pred">method pred</a></td></tr>
+   <tr class="toc-level-1"><td class="toc-number">2</td><td class="toc-text"><a href="#Type_Graph">Type Graph</a></td></tr>
+ 
+</table>
+</nav>
+
+        <div class="pod-body ">
+            <pre class="pod-block-code">role Numeric { ... }</pre>
+<p>Common role for numbers and types that can act as numbers.</p>
+<p>Binary numeric operations return an object of the &quot;wider&quot; type:</p>
+<pre class="pod-block-code">Int         narrowest
+Rat
+FatRat
+Num
+Complex     widest
+</pre>
+<p>So for example the product of a <a href="/Documentable/integration-test/type/Rat">Rat</a> and an <a href="/Documentable/integration-test/type/Int">Int</a> is a <a href="/Documentable/integration-test/type/Rat">Rat</a>.</p>
+<p>Unary operations that in pure math usually return an irrational number generally return <a href="/Documentable/integration-test/type/Num">Num</a> in Raku.</p>
+<h1 id="Methods"><a class="u" href="#___top" title="go to top of document">Methods</a></h1>
+<h2 id="method_Numeric"><a class="u" href="#___top" title="go to top of document">method Numeric</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi method Numeric(Numeric:D: --&gt; Numeric:D)
+multi method Numeric(Numeric:U: --&gt; Numeric:D)</pre>
+<p>The <code>:D</code> variant simply returns the invocant. The <code>:U</code> variant issues a warning about using an uninitialized value in numeric context and then returns <code>self.new</code>.</p>
+<h2 id="method_Int"><a class="u" href="#___top" title="go to top of document">method Int</a></h2>
+<pre class="pod-block-code">method Int(Numeric:D: --&gt; Int:D)</pre>
+<p>If this <code>Numeric</code> is equivalent to a <code>Real</code>, return the equivalent of calling <code>truncate</code> on that <code>Real</code> to get an <code>Int</code>. Fail with <code>X::Numeric::Real</code> otherwise.</p>
+<h2 id="method_Rat"><a class="u" href="#___top" title="go to top of document">method Rat</a></h2>
+<pre class="pod-block-code">method Rat(Numeric:D: Real $epsilon = 1.0e-6 --&gt; Rat:D)</pre>
+<p>If this <code>Numeric</code> is equivalent to a <code>Real</code>, return a <code>Rat</code> which is within <code>$epsilon</code> of that <code>Real</code>&#39;s value. Fail with <code>X::Numeric::Real</code> otherwise.</p>
+<h2 id="method_Num"><a class="u" href="#___top" title="go to top of document">method Num</a></h2>
+<pre class="pod-block-code">method Num(Numeric:D: --&gt; Num:D)</pre>
+<p>If this <code>Numeric</code> is equivalent to a <code>Real</code>, return that <code>Real</code> as a <code>Num</code> as accurately as is possible. Fail with <code>X::Numeric::Real</code> otherwise.</p>
+<h2 id="method_narrow"><a class="u" href="#___top" title="go to top of document">method narrow</a></h2>
+<pre class="pod-block-code">method narrow(Numeric:D --&gt; Numeric:D)</pre>
+<p>Returns the number converted to the narrowest type that can hold it without loss of precision.</p>
+<pre class="pod-block-code">say (4.0 + 0i).narrow.raku;     # OUTPUT: «4␤»
+say (4.0 + 0i).narrow.^name;    # OUTPUT: «Int␤»</pre>
+<h2 id="method_ACCEPTS"><a class="u" href="#___top" title="go to top of document">method ACCEPTS</a></h2>
+<pre class="pod-block-code">multi method ACCEPTS(Numeric:D: $other)</pre>
+<p>Returns <code>True</code> if <code>$other</code> can be coerced to <a href="/Documentable/integration-test/type/Numeric">Numeric</a> and is <a href="/Documentable/integration-test/routine/==">numerically equal</a> to the invocant (or both evaluate to <code>NaN</code>).</p>
+<h2 id="routine_log"><a class="u" href="#___top" title="go to top of document">routine log</a></h2>
+<pre class="pod-block-code">multi sub    log(Numeric:D, Numeric $base = e --&gt; Numeric:D)
+multi method log(Numeric:D: Numeric $base = e --&gt; Numeric:D)</pre>
+<p>Calculates the logarithm to base <code>$base</code>. Defaults to the natural logarithm. Returns <code>NaN</code> if <code>$base</code> is negative. Throws an exception if <code>$base</code> is <code>1</code>.</p>
+<h2 id="routine_log10"><a class="u" href="#___top" title="go to top of document">routine log10</a></h2>
+<pre class="pod-block-code">multi sub    log10(Numeric:D  --&gt; Numeric:D)
+multi method log10(Numeric:D: --&gt; Numeric:D)</pre>
+<p>Calculates the logarithm to base 10. Returns <code>NaN</code> for negative arguments and <code>-Inf</code> for <code>0</code>.</p>
+<h2 id="routine_log2"><a class="u" href="#___top" title="go to top of document">routine log2</a></h2>
+<pre class="pod-block-code">multi sub    log2(Numeric:D)
+multi method log2(Numeric:D:)</pre>
+<p>Calculates the logarithm to base 2. Returns <code>NaN</code> for negative arguments and <code>-Inf</code> for <code>0</code>.</p>
+<h2 id="routine_exp"><a class="u" href="#___top" title="go to top of document">routine exp</a></h2>
+<pre class="pod-block-code">multi sub    exp(Numeric:D, Numeric:D $base = e --&gt; Numeric:D)
+multi method exp(Numeric:D: Numeric:D $base = e --&gt; Numeric:D)</pre>
+<p>Returns <code>$base</code> to the power of the number, or <code>e</code> to the power of the number if called without a second argument.</p>
+<h2 id="method_roots"><a class="u" href="#___top" title="go to top of document">method roots</a></h2>
+<pre class="pod-block-code">multi method roots(Numeric:D: Int:D $n --&gt; Positional)</pre>
+<p>Returns a list of the <code>$n</code> complex roots, which evaluate to the original number when raised to the <code>$n</code>th power.</p>
+<h2 id="routine_abs"><a class="u" href="#___top" title="go to top of document">routine abs</a></h2>
+<pre class="pod-block-code">multi sub    abs(Numeric:D  --&gt; Real:D)
+multi method abs(Numeric:D: --&gt; Real:D)</pre>
+<p>Returns the absolute value of the number.</p>
+<h2 id="routine_sqrt"><a class="u" href="#___top" title="go to top of document">routine sqrt</a></h2>
+<pre class="pod-block-code">multi sub    sqrt(Numeric:D --&gt; Numeric:D)
+multi method sqrt(Numeric:D --&gt; Numeric:D)</pre>
+<p>Returns a square root of the number. For real numbers the positive square root is returned.</p>
+<p>On negative real numbers, <code>sqrt</code> returns <a href="/Documentable/integration-test/type/Num#NaN"><code>NaN</code></a> rather than a complex number, in order to not confuse people who are not familiar with complex arithmetic. If you want to calculate complex square roots, coerce to <code>Complex</code> first, or use the <code>roots</code> method.</p>
+<h2 id="method_conj"><a class="u" href="#___top" title="go to top of document">method conj</a></h2>
+<pre class="pod-block-code">multi method conj(Numeric:D --&gt; Numeric:D)</pre>
+<p>Returns the complex conjugate of the number. Returns the number itself for real numbers.</p>
+<h2 id="method_Bool"><a class="u" href="#___top" title="go to top of document">method Bool</a></h2>
+<pre class="pod-block-code">multi method Bool(Numeric:D:)</pre>
+<p>Returns <code>False</code> if the number is equivalent to zero, and <code>True</code> otherwise.</p>
+<h2 id="method_succ"><a class="u" href="#___top" title="go to top of document">method succ</a></h2>
+<pre class="pod-block-code">method succ(Numeric:D:)</pre>
+<p>Returns the number incremented by one (successor).</p>
+<h2 id="method_pred"><a class="u" href="#___top" title="go to top of document">method pred</a></h2>
+<pre class="pod-block-code">method pred(Numeric:D:)</pre>
+<p>Returns the number decremented by one (predecessor).</p>
+<h1 id="Type_Graph"><a class="u" href="#___top" title="go to top of document">Type Graph</a></h1>
+<figure>
+  <figcaption>Type relations for <code>Numeric</code></figcaption>
+  <svg width="1226pt" height="332pt"
+ viewBox="0.00 0.00 1226.09 332.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>perl6&#45;type&#45;graph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-328 1222.09,-328 1222.09,4 -4,4"/>
+<!-- Numeric -->
+<g id="node1" class="node">
+<title>Numeric</title>
+<g id="a_node1"><a xlink:href="/type/Numeric" xlink:title="Numeric">
+<ellipse fill="none" stroke="#6666ff" cx="899.3" cy="-234" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="899.3" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Numeric</text>
+</a>
+</g>
+</g>
+<!-- Mu -->
+<g id="node2" class="node">
+<title>Mu</title>
+<g id="a_node2"><a xlink:href="/type/Mu" xlink:title="Mu">
+<ellipse fill="none" stroke="#000000" cx="660.3" cy="-306" rx="27" ry="18"/>
+<text text-anchor="middle" x="660.3" y="-302.3" font-family="FreeSans" font-size="14.00" fill="#000000">Mu</text>
+</a>
+</g>
+</g>
+<!-- Any -->
+<g id="node3" class="node">
+<title>Any</title>
+<g id="a_node3"><a xlink:href="/type/Any" xlink:title="Any">
+<ellipse fill="none" stroke="#000000" cx="660.3" cy="-234" rx="27" ry="18"/>
+<text text-anchor="middle" x="660.3" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Any</text>
+</a>
+</g>
+</g>
+<!-- Any&#45;&gt;Mu -->
+<g id="edge1" class="edge">
+<title>Any&#45;&gt;Mu</title>
+<path fill="none" stroke="#000000" d="M660.3,-252.3C660.3,-260.02 660.3,-269.29 660.3,-277.89"/>
+<polygon fill="#000000" stroke="#000000" points="656.8,-277.9 660.3,-287.9 663.8,-277.9 656.8,-277.9"/>
+</g>
+<!-- Cool -->
+<g id="node4" class="node">
+<title>Cool</title>
+<g id="a_node4"><a xlink:href="/type/Cool" xlink:title="Cool">
+<ellipse fill="none" stroke="#000000" cx="660.3" cy="-162" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="660.3" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#000000">Cool</text>
+</a>
+</g>
+</g>
+<!-- Cool&#45;&gt;Any -->
+<g id="edge2" class="edge">
+<title>Cool&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M660.3,-180.3C660.3,-188.02 660.3,-197.29 660.3,-205.89"/>
+<polygon fill="#000000" stroke="#000000" points="656.8,-205.9 660.3,-215.9 663.8,-205.9 656.8,-205.9"/>
+</g>
+<!-- Complex -->
+<g id="node5" class="node">
+<title>Complex</title>
+<g id="a_node5"><a xlink:href="/type/Complex" xlink:title="Complex">
+<ellipse fill="none" stroke="#000000" cx="1031.3" cy="-90" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="1031.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Complex</text>
+</a>
+</g>
+</g>
+<!-- Complex&#45;&gt;Numeric -->
+<g id="edge24" class="edge">
+<title>Complex&#45;&gt;Numeric</title>
+<path fill="none" stroke="#6666ff" d="M1024.36,-108.16C1013.89,-134.02 995.3,-180 995.3,-180 995.3,-180 961.12,-198.87 933.56,-214.09"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="931.58,-211.18 924.52,-219.07 934.97,-217.31 931.58,-211.18"/>
+</g>
+<!-- Complex&#45;&gt;Cool -->
+<g id="edge3" class="edge">
+<title>Complex&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M997.1,-101.77C986.38,-105.14 977.3,-108 977.3,-108 977.3,-108 783.99,-140.32 699.28,-154.48"/>
+<polygon fill="#000000" stroke="#000000" points="698.55,-151.05 689.27,-156.16 699.71,-157.96 698.55,-151.05"/>
+</g>
+<!-- Real -->
+<g id="node6" class="node">
+<title>Real</title>
+<g id="a_node6"><a xlink:href="/type/Real" xlink:title="Real">
+<ellipse fill="none" stroke="#6666ff" cx="565.3" cy="-162" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="565.3" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Real</text>
+</a>
+</g>
+</g>
+<!-- Real&#45;&gt;Numeric -->
+<g id="edge25" class="edge">
+<title>Real&#45;&gt;Numeric</title>
+<path fill="none" stroke="#6666ff" d="M591.83,-171.2C605.89,-175.55 620.3,-180 620.3,-180 620.3,-180 769.55,-208.35 849.73,-223.58"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="849.14,-227.03 859.62,-225.46 850.45,-220.16 849.14,-227.03"/>
+</g>
+<!-- Stringy -->
+<g id="node7" class="node">
+<title>Stringy</title>
+<g id="a_node7"><a xlink:href="/type/Stringy" xlink:title="Stringy">
+<ellipse fill="none" stroke="#6666ff" cx="941.3" cy="-162" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="941.3" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Stringy</text>
+</a>
+</g>
+</g>
+<!-- Str -->
+<g id="node8" class="node">
+<title>Str</title>
+<g id="a_node8"><a xlink:href="/type/Str" xlink:title="Str">
+<ellipse fill="none" stroke="#000000" cx="941.3" cy="-90" rx="27" ry="18"/>
+<text text-anchor="middle" x="941.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Str</text>
+</a>
+</g>
+</g>
+<!-- Str&#45;&gt;Cool -->
+<g id="edge4" class="edge">
+<title>Str&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M916.36,-97.21C866.94,-109.52 756.33,-137.08 697.98,-151.61"/>
+<polygon fill="#000000" stroke="#000000" points="696.92,-148.27 688.06,-154.08 698.61,-155.06 696.92,-148.27"/>
+</g>
+<!-- Str&#45;&gt;Stringy -->
+<g id="edge26" class="edge">
+<title>Str&#45;&gt;Stringy</title>
+<path fill="none" stroke="#6666ff" d="M941.3,-108.3C941.3,-116.02 941.3,-125.29 941.3,-133.89"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="937.8,-133.9 941.3,-143.9 944.8,-133.9 937.8,-133.9"/>
+</g>
+<!-- ComplexStr -->
+<g id="node9" class="node">
+<title>ComplexStr</title>
+<g id="a_node9"><a xlink:href="/type/ComplexStr" xlink:title="ComplexStr">
+<ellipse fill="none" stroke="#000000" cx="1158.3" cy="-18" rx="59.59" ry="18"/>
+<text text-anchor="middle" x="1158.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">ComplexStr</text>
+</a>
+</g>
+</g>
+<!-- ComplexStr&#45;&gt;Complex -->
+<g id="edge5" class="edge">
+<title>ComplexStr&#45;&gt;Complex</title>
+<path fill="none" stroke="#000000" d="M1130.74,-34.19C1111.63,-44.72 1086.06,-58.82 1065.62,-70.08"/>
+<polygon fill="#000000" stroke="#000000" points="1063.71,-67.14 1056.64,-75.03 1067.09,-73.27 1063.71,-67.14"/>
+</g>
+<!-- ComplexStr&#45;&gt;Str -->
+<g id="edge6" class="edge">
+<title>ComplexStr&#45;&gt;Str</title>
+<path fill="none" stroke="#000000" d="M1116.77,-31.16C1063.33,-46.81 977.3,-72 977.3,-72 977.3,-72 975.12,-73.03 971.83,-74.58"/>
+<polygon fill="#000000" stroke="#000000" points="970.2,-71.48 962.65,-78.91 973.19,-77.81 970.2,-71.48"/>
+</g>
+<!-- Num -->
+<g id="node10" class="node">
+<title>Num</title>
+<g id="a_node10"><a xlink:href="/type/Num" xlink:title="Num">
+<ellipse fill="none" stroke="#000000" cx="760.3" cy="-90" rx="27" ry="18"/>
+<text text-anchor="middle" x="760.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Num</text>
+</a>
+</g>
+</g>
+<!-- Num&#45;&gt;Cool -->
+<g id="edge7" class="edge">
+<title>Num&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M742.42,-103.51C727.3,-114.1 705.39,-129.43 688,-141.61"/>
+<polygon fill="#000000" stroke="#000000" points="685.57,-139.04 679.38,-147.64 689.58,-144.77 685.57,-139.04"/>
+</g>
+<!-- Num&#45;&gt;Real -->
+<g id="edge27" class="edge">
+<title>Num&#45;&gt;Real</title>
+<path fill="none" stroke="#6666ff" d="M738.94,-101.09C731.19,-104.75 724.3,-108 724.3,-108 724.3,-108 647.56,-133.58 600.7,-149.2"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="599.58,-145.88 591.2,-152.37 601.79,-152.52 599.58,-145.88"/>
+</g>
+<!-- Rational -->
+<g id="node11" class="node">
+<title>Rational</title>
+<g id="a_node11"><a xlink:href="/type/Rational" xlink:title="Rational">
+<ellipse fill="none" stroke="#6666ff" cx="125.3" cy="-90" rx="50.09" ry="18"/>
+<text text-anchor="middle" x="125.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Rational</text>
+</a>
+</g>
+</g>
+<!-- Rational&#45;&gt;Real -->
+<g id="edge28" class="edge">
+<title>Rational&#45;&gt;Real</title>
+<path fill="none" stroke="#6666ff" d="M170.32,-98.16C256.57,-111.88 443.82,-141.67 525.67,-154.7"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="525.61,-158.23 536.03,-156.34 526.71,-151.32 525.61,-158.23"/>
+</g>
+<!-- Int -->
+<g id="node12" class="node">
+<title>Int</title>
+<g id="a_node12"><a xlink:href="/type/Int" xlink:title="Int">
+<ellipse fill="none" stroke="#000000" cx="688.3" cy="-90" rx="27" ry="18"/>
+<text text-anchor="middle" x="688.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Int</text>
+</a>
+</g>
+</g>
+<!-- Int&#45;&gt;Cool -->
+<g id="edge8" class="edge">
+<title>Int&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M681.66,-107.59C678.43,-115.66 674.47,-125.57 670.84,-134.65"/>
+<polygon fill="#000000" stroke="#000000" points="667.54,-133.46 667.08,-144.04 674.04,-136.06 667.54,-133.46"/>
+</g>
+<!-- Int&#45;&gt;Real -->
+<g id="edge29" class="edge">
+<title>Int&#45;&gt;Real</title>
+<path fill="none" stroke="#6666ff" d="M668.26,-102.4C648.52,-113.64 618.1,-130.95 595.44,-143.85"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="593.52,-140.91 586.56,-148.9 596.98,-146.99 593.52,-140.91"/>
+</g>
+<!-- Duration -->
+<g id="node13" class="node">
+<title>Duration</title>
+<g id="a_node13"><a xlink:href="/type/Duration" xlink:title="Duration">
+<ellipse fill="none" stroke="#000000" cx="409.3" cy="-90" rx="50.09" ry="18"/>
+<text text-anchor="middle" x="409.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Duration</text>
+</a>
+</g>
+</g>
+<!-- Duration&#45;&gt;Cool -->
+<g id="edge9" class="edge">
+<title>Duration&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M447,-101.86C458.56,-105.19 468.3,-108 468.3,-108 468.3,-108 605.3,-144 605.3,-144 605.3,-144 613.74,-146.61 624.01,-149.78"/>
+<polygon fill="#000000" stroke="#000000" points="623.18,-153.19 633.76,-152.8 625.24,-146.5 623.18,-153.19"/>
+</g>
+<!-- Duration&#45;&gt;Real -->
+<g id="edge30" class="edge">
+<title>Duration&#45;&gt;Real</title>
+<path fill="none" stroke="#6666ff" d="M439.37,-104.5C465.99,-116.44 504.75,-133.83 532.22,-146.16"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="530.88,-149.39 541.43,-150.29 533.74,-143.01 530.88,-149.39"/>
+</g>
+<!-- Instant -->
+<g id="node14" class="node">
+<title>Instant</title>
+<g id="a_node14"><a xlink:href="/type/Instant" xlink:title="Instant">
+<ellipse fill="none" stroke="#000000" cx="522.3" cy="-90" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="522.3" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Instant</text>
+</a>
+</g>
+</g>
+<!-- Instant&#45;&gt;Cool -->
+<g id="edge10" class="edge">
+<title>Instant&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M548.9,-104.5C571.72,-116.07 604.64,-132.77 628.77,-145.01"/>
+<polygon fill="#000000" stroke="#000000" points="627.37,-148.22 637.87,-149.63 630.54,-141.98 627.37,-148.22"/>
+</g>
+<!-- Instant&#45;&gt;Real -->
+<g id="edge31" class="edge">
+<title>Instant&#45;&gt;Real</title>
+<path fill="none" stroke="#6666ff" d="M532.49,-107.59C537.68,-116.05 544.11,-126.51 549.89,-135.92"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="546.96,-137.84 555.18,-144.53 552.93,-134.18 546.96,-137.84"/>
+</g>
+<!-- NumStr -->
+<g id="node15" class="node">
+<title>NumStr</title>
+<g id="a_node15"><a xlink:href="/type/NumStr" xlink:title="NumStr">
+<ellipse fill="none" stroke="#000000" cx="1040.3" cy="-18" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="1040.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">NumStr</text>
+</a>
+</g>
+</g>
+<!-- NumStr&#45;&gt;Str -->
+<g id="edge12" class="edge">
+<title>NumStr&#45;&gt;Str</title>
+<path fill="none" stroke="#000000" d="M1019.78,-33.5C1004.68,-44.18 984.03,-58.79 967.69,-70.34"/>
+<polygon fill="#000000" stroke="#000000" points="965.27,-67.76 959.13,-76.39 969.31,-73.48 965.27,-67.76"/>
+</g>
+<!-- NumStr&#45;&gt;Num -->
+<g id="edge11" class="edge">
+<title>NumStr&#45;&gt;Num</title>
+<path fill="none" stroke="#000000" d="M1009.2,-29.57C999.03,-33.03 990.3,-36 990.3,-36 990.3,-36 859.88,-66.05 795.46,-80.9"/>
+<polygon fill="#000000" stroke="#000000" points="794.31,-77.57 785.35,-83.23 795.88,-84.39 794.31,-77.57"/>
+</g>
+<!-- atomicint -->
+<g id="node16" class="node">
+<title>atomicint</title>
+<g id="a_node16"><a xlink:href="/type/atomicint" xlink:title="atomicint">
+<ellipse fill="none" stroke="#000000" cx="588.3" cy="-18" rx="54.69" ry="18"/>
+<text text-anchor="middle" x="588.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">atomicint</text>
+</a>
+</g>
+</g>
+<!-- atomicint&#45;&gt;Int -->
+<g id="edge13" class="edge">
+<title>atomicint&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M610.49,-34.54C625.64,-45.14 645.78,-59.24 661.77,-70.43"/>
+<polygon fill="#000000" stroke="#000000" points="659.97,-73.45 670.17,-76.31 663.99,-67.71 659.97,-73.45"/>
+</g>
+<!-- int -->
+<g id="node17" class="node">
+<title>int</title>
+<g id="a_node17"><a xlink:href="/type/int" xlink:title="int">
+<ellipse fill="none" stroke="#000000" cx="688.3" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="688.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">int</text>
+</a>
+</g>
+</g>
+<!-- int&#45;&gt;Int -->
+<g id="edge14" class="edge">
+<title>int&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M688.3,-36.3C688.3,-44.02 688.3,-53.29 688.3,-61.89"/>
+<polygon fill="#000000" stroke="#000000" points="684.8,-61.9 688.3,-71.9 691.8,-61.9 684.8,-61.9"/>
+</g>
+<!-- Bool -->
+<g id="node18" class="node">
+<title>Bool</title>
+<g id="a_node18"><a xlink:href="/type/Bool" xlink:title="Bool">
+<ellipse fill="none" stroke="#33bb33" cx="764.3" cy="-18" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="764.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#33bb33">Bool</text>
+</a>
+</g>
+</g>
+<!-- Bool&#45;&gt;Int -->
+<g id="edge15" class="edge">
+<title>Bool&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M748.55,-33.5C737.71,-43.49 723.13,-56.91 711.03,-68.06"/>
+<polygon fill="#000000" stroke="#000000" points="708.49,-65.64 703.5,-74.99 713.23,-70.79 708.49,-65.64"/>
+</g>
+<!-- Order -->
+<g id="node19" class="node">
+<title>Order</title>
+<g id="a_node19"><a xlink:href="/type/Order" xlink:title="Order">
+<ellipse fill="none" stroke="#33bb33" cx="848.3" cy="-18" rx="35.19" ry="18"/>
+<text text-anchor="middle" x="848.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#33bb33">Order</text>
+</a>
+</g>
+</g>
+<!-- Order&#45;&gt;Int -->
+<g id="edge16" class="edge">
+<title>Order&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M822.3,-30.11C785.94,-45.65 724.3,-72 724.3,-72 724.3,-72 722.12,-73.03 718.83,-74.58"/>
+<polygon fill="#000000" stroke="#000000" points="717.2,-71.48 709.65,-78.91 720.19,-77.81 717.2,-71.48"/>
+</g>
+<!-- Signal -->
+<g id="node20" class="node">
+<title>Signal</title>
+<g id="a_node20"><a xlink:href="/type/Signal" xlink:title="Signal">
+<ellipse fill="none" stroke="#33bb33" cx="210.3" cy="-18" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="210.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#33bb33">Signal</text>
+</a>
+</g>
+</g>
+<!-- Signal&#45;&gt;Int -->
+<g id="edge17" class="edge">
+<title>Signal&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M241.39,-29.57C251.56,-33.03 260.3,-36 260.3,-36 260.3,-36 647.3,-72 647.3,-72 647.3,-72 651.18,-73.61 656.55,-75.84"/>
+<polygon fill="#000000" stroke="#000000" points="655.3,-79.11 665.88,-79.7 657.98,-72.64 655.3,-79.11"/>
+</g>
+<!-- Endian -->
+<g id="node21" class="node">
+<title>Endian</title>
+<g id="a_node21"><a xlink:href="/type/Endian" xlink:title="Endian">
+<ellipse fill="none" stroke="#33bb33" cx="309.3" cy="-18" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="309.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#33bb33">Endian</text>
+</a>
+</g>
+</g>
+<!-- Endian&#45;&gt;Int -->
+<g id="edge18" class="edge">
+<title>Endian&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M340.05,-29.67C349.9,-33.09 358.3,-36 358.3,-36 358.3,-36 647.3,-72 647.3,-72 647.3,-72 651.18,-73.61 656.55,-75.84"/>
+<polygon fill="#000000" stroke="#000000" points="655.3,-79.11 665.88,-79.7 657.98,-72.64 655.3,-79.11"/>
+</g>
+<!-- IntStr -->
+<g id="node22" class="node">
+<title>IntStr</title>
+<g id="a_node22"><a xlink:href="/type/IntStr" xlink:title="IntStr">
+<ellipse fill="none" stroke="#000000" cx="941.3" cy="-18" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="941.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">IntStr</text>
+</a>
+</g>
+</g>
+<!-- IntStr&#45;&gt;Str -->
+<g id="edge20" class="edge">
+<title>IntStr&#45;&gt;Str</title>
+<path fill="none" stroke="#000000" d="M941.3,-36.3C941.3,-44.02 941.3,-53.29 941.3,-61.89"/>
+<polygon fill="#000000" stroke="#000000" points="937.8,-61.9 941.3,-71.9 944.8,-61.9 937.8,-61.9"/>
+</g>
+<!-- IntStr&#45;&gt;Int -->
+<g id="edge19" class="edge">
+<title>IntStr&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M910.54,-29.67C900.7,-33.09 892.3,-36 892.3,-36 892.3,-36 724.3,-72 724.3,-72 724.3,-72 722.12,-73.03 718.83,-74.58"/>
+<polygon fill="#000000" stroke="#000000" points="717.2,-71.48 709.65,-78.91 720.19,-77.81 717.2,-71.48"/>
+</g>
+<!-- PromiseStatus -->
+<g id="node23" class="node">
+<title>PromiseStatus</title>
+<g id="a_node23"><a xlink:href="/type/PromiseStatus" xlink:title="PromiseStatus">
+<ellipse fill="none" stroke="#33bb33" cx="441.3" cy="-18" rx="74.19" ry="18"/>
+<text text-anchor="middle" x="441.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#33bb33">PromiseStatus</text>
+</a>
+</g>
+</g>
+<!-- PromiseStatus&#45;&gt;Int -->
+<g id="edge21" class="edge">
+<title>PromiseStatus&#45;&gt;Int</title>
+<path fill="none" stroke="#000000" d="M490.12,-31.56C551.03,-47.23 647.3,-72 647.3,-72 647.3,-72 651.18,-73.61 656.55,-75.84"/>
+<polygon fill="#000000" stroke="#000000" points="655.3,-79.11 665.88,-79.7 657.98,-72.64 655.3,-79.11"/>
+</g>
+<!-- FatRat -->
+<g id="node24" class="node">
+<title>FatRat</title>
+<g id="a_node24"><a xlink:href="/type/FatRat" xlink:title="FatRat">
+<ellipse fill="none" stroke="#000000" cx="40.3" cy="-18" rx="40.09" ry="18"/>
+<text text-anchor="middle" x="40.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">FatRat</text>
+</a>
+</g>
+</g>
+<!-- FatRat&#45;&gt;Cool -->
+<g id="edge22" class="edge">
+<title>FatRat&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M71.05,-29.67C80.9,-33.09 89.3,-36 89.3,-36 89.3,-36 576.3,-72 576.3,-72 576.3,-72 609.3,-108 609.3,-108 609.3,-108 624.85,-124.16 638.77,-138.63"/>
+<polygon fill="#000000" stroke="#000000" points="636.36,-141.18 645.82,-145.95 641.41,-136.32 636.36,-141.18"/>
+</g>
+<!-- FatRat&#45;&gt;Rational -->
+<g id="edge32" class="edge">
+<title>FatRat&#45;&gt;Rational</title>
+<path fill="none" stroke="#6666ff" d="M58.74,-34.19C70.2,-43.62 85.13,-55.92 97.94,-66.47"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="96.06,-69.46 106,-73.11 100.51,-64.05 96.06,-69.46"/>
+</g>
+<!-- Rat -->
+<g id="node25" class="node">
+<title>Rat</title>
+<g id="a_node25"><a xlink:href="/type/Rat" xlink:title="Rat">
+<ellipse fill="none" stroke="#000000" cx="125.3" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="125.3" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Rat</text>
+</a>
+</g>
+</g>
+<!-- Rat&#45;&gt;Cool -->
+<g id="edge23" class="edge">
+<title>Rat&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M146.65,-29.09C154.41,-32.75 161.3,-36 161.3,-36 161.3,-36 609.3,-72 609.3,-72 609.3,-72 630.84,-109.59 645.92,-135.92"/>
+<polygon fill="#000000" stroke="#000000" points="642.93,-137.74 650.94,-144.68 649.01,-134.26 642.93,-137.74"/>
+</g>
+<!-- Rat&#45;&gt;Rational -->
+<g id="edge33" class="edge">
+<title>Rat&#45;&gt;Rational</title>
+<path fill="none" stroke="#6666ff" d="M125.3,-36.3C125.3,-44.02 125.3,-53.29 125.3,-61.89"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="121.8,-61.9 125.3,-71.9 128.8,-61.9 121.8,-61.9"/>
+</g>
+</g>
+</svg>
+
+  <p class="fallback">
+    <a
+      rel="alternate"
+      href="/images/type-graph-Numeric.svg"
+      type="image/svg+xml"
+      >Expand above chart</a
+    >
+  </p>
+</figure>
+
+        </div>
+    </div>
+
+    
+
+    <footer class="pretty-box yellow">
+        <p>
+            Generated from <a href="https://github.com/Raku/doc/tree/master/docs/Type/Numeric.pod6">https://github.com/Raku/doc/tree/master/docs/Type/Numeric.pod6</a>.
+        </p>
+        <p>
+            This is a work in progress to document Raku (formerly known as Perl 6), and
+            known to be incomplete.
+        </p>
+        <p>
+            <a href="https://github.com/raku/doc/blob/master/CONTRIBUTING.md#reporting-bugs">
+                Please report any issues
+            </a>
+            Your contribution is appreciated.
+        </p>
+        <p>
+            This documentation is provided under the terms of the
+            <a href="https://raw.githubusercontent.com/raku/doc/master/LICENSE">
+                Artistic License 2.0
+            </a>. The Camelia image is
+            <a href="https://raw.githubusercontent.com/raku/mu/master/misc/camelia.txt">
+                copyright © 2009 by Larry Wall.
+            </a>
+            <!-- CREDITS -->
+            <!--External Link Image by Zapyon, CCA-SA 4.0. Derived from Wikimedia Foundation https://commons.wikimedia.org/wiki/File:External-link-04-bold-12x12.svg -->
+        </p>
+    </footer>
+
+    <script type="text/javascript" src="/Documentable/integration-test/js/app.js?v=1"></script>
+    <script type="text/javascript" src="/Documentable/integration-test/js/search.js?v=3"></script>
+</body>
+</html>
+

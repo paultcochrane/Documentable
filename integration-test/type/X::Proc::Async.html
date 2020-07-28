@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>role X::Proc::Async</title>
+    <meta charset="UTF-8"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Documentable/integration-test/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/Documentable/integration-test/css/app.css" media="screen" title="default" />
+    <noscript> <style> #search { visibility: hidden; } </style> </noscript>
+</head>
+
+<body class="pod">
+
+    <div id="___top"></div>
+
+    <div id="header" class="pretty-box green">
+
+        <a href="/Documentable/integration-test/">
+            <img src="/Documentable/integration-test/images/Camelia.svg"alt="»ö«"id="logo"width="62"height="48"/> &nbsp;Raku Documentation
+        </a>
+
+        <div id="search" class="ui-widget">
+            <div class="green">
+                <input placeholder="Loading..." id="query" accesskey="f" title="Enter term to search for (hit Esc to focus)"/>
+            </div>
+            <p id="not-found-message">
+                Not in Index (<a href="" id="try-web-search">try site search</a>)
+            </p>
+        </div>
+        
+        <div class="menu">
+            
+            <div class="menu-items dark-green">
+                <a class='menu-item darker-green' href='https://raku.org'><strong>Raku homepage</strong></a>
+                    <a class="menu-item " href="/Documentable/integration-test/language.html"> Language </a>
+                    <a class="menu-item selected darker-green" href="/Documentable/integration-test/type.html"> Types </a>
+                    <a class="menu-item " href="/Documentable/integration-test/routine.html"> Routines </a>
+                    <a class="menu-item " href="https://webchat.freenode.net/?channels=#raku"> Chat with us </a>
+            </div>
+            
+            <div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green">
+                    <a class="menu-item" href="/Documentable/integration-test/type.html"> All </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-basic.html"> Basic </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-html-generation.html"> HTML Generation </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-exception.html"> Exceptions </a>
+            </div></div></div></div>
+        
+        </div>
+    </div>
+
+    <div id="content" class="pretty-box yellow content_fragment">
+
+        <div align="right" style="display:;">
+            <button title="Edit this page"  class="pencil" onclick="location='https://github.com/Raku/doc/tree/master/docs/Type/X/Proc/Async.pod6'">
+                <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="pencil" fill="#000000">
+                            <path d="M0,12 L0,15 L3,15 L11,7 L8,4 L0,12 L0,12 Z M3,14 L1,14 L1,12 L2,12 L2,13 L3,13 L3,14 L3,14 Z M13.3,4.7 L12,6 L9,3 L10.3,1.7 C10.69,1.31 11.32,1.31 11.71,1.7 L13.3,3.29 C13.69,3.68 13.69,4.31 13.3,4.7 L13.3,4.7 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <h1 class="title">role X::Proc::Async</h1>
+        <p class="subtitle">Exception thrown by Proc::Async</p>
+
+        <nav class="indexgroup">
+<table id="TOC">
+<caption><h2 id="TOC_Title">Table of Contents</h2></caption>
+      <tr class="toc-level-1"><td class="toc-number">1</td><td class="toc-text"><a href="#Methods">Methods</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-number">1.1</td><td class="toc-text"><a href="#method_proc">method proc</a></td></tr>
+   <tr class="toc-level-1"><td class="toc-number">2</td><td class="toc-text"><a href="#Type_Graph">Type Graph</a></td></tr>
+  <tr class="toc-level-1"><td class="toc-number">3</td><td class="toc-text"><a href="#Routines_supplied_by_class_Exception">Routines supplied by class Exception</a></td></tr>
+    <tr class="toc-level-2"><td class="toc-number">3.1</td><td class="toc-text"><a href="#(Exception)_method_message">(Exception) method message</a></td></tr>
+      <tr class="toc-level-2"><td class="toc-number">3.2</td><td class="toc-text"><a href="#(Exception)_method_backtrace">(Exception) method backtrace</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">3.3</td><td class="toc-text"><a href="#(Exception)_method_throw">(Exception) method throw</a></td></tr>
+     <tr class="toc-level-2"><td class="toc-number">3.4</td><td class="toc-text"><a href="#(Exception)_method_resume">(Exception) method resume</a></td></tr>
+         <tr class="toc-level-2"><td class="toc-number">3.5</td><td class="toc-text"><a href="#(Exception)_method_rethrow">(Exception) method rethrow</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">3.6</td><td class="toc-text"><a href="#(Exception)_routine_fail">(Exception) routine fail</a></td></tr>
+                                   <tr class="toc-level-2"><td class="toc-number">3.7</td><td class="toc-text"><a href="#(Exception)_method_gist">(Exception) method gist</a></td></tr>
+     <tr class="toc-level-2"><td class="toc-number">3.8</td><td class="toc-text"><a href="#(Exception)_routine_die">(Exception) routine die</a></td></tr>
+                                                       <tr class="toc-level-2"><td class="toc-number">3.9</td><td class="toc-text"><a href="#(Exception)_sub_warn">(Exception) sub warn</a></td></tr>
+                   
+</table>
+</nav>
+
+        <div class="pod-body ">
+            <pre class="pod-block-code">role X::Proc::Async is Exception { ... }</pre>
+<p>All exceptions thrown by <a href="/Documentable/integration-test/type/Proc::Async">Proc::Async</a> do this common role.</p>
+<h1 id="Methods"><a class="u" href="#___top" title="go to top of document">Methods</a></h1>
+<h2 id="method_proc"><a class="u" href="#___top" title="go to top of document">method proc</a></h2>
+<pre class="pod-block-code">method proc(X::Proc::Async:D --&gt; Proc::Async)</pre>
+<p>Returns the object that threw the exception.</p>
+<h1 id="Type_Graph"><a class="u" href="#___top" title="go to top of document">Type Graph</a></h1>
+<figure>
+  <figcaption>Type relations for <code>X::Proc::Async</code></figcaption>
+  <svg width="1907pt" height="332pt"
+ viewBox="0.00 0.00 1906.62 332.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>perl6&#45;type&#45;graph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-328 1902.62,-328 1902.62,4 -4,4"/>
+<!-- X::Proc::Async -->
+<g id="node1" class="node">
+<title>X::Proc::Async</title>
+<g id="a_node1"><a xlink:href="/type/X::Proc::Async" xlink:title="X::Proc::Async">
+<ellipse fill="none" stroke="#6666ff" cx="953.09" cy="-90" rx="79.09" ry="18"/>
+<text text-anchor="middle" x="953.09" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">X::Proc::Async</text>
+</a>
+</g>
+</g>
+<!-- Exception -->
+<g id="node4" class="node">
+<title>Exception</title>
+<g id="a_node4"><a xlink:href="/type/Exception" xlink:title="Exception">
+<ellipse fill="none" stroke="#000000" cx="953.09" cy="-162" rx="54.69" ry="18"/>
+<text text-anchor="middle" x="953.09" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#000000">Exception</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async&#45;&gt;Exception -->
+<g id="edge1" class="edge">
+<title>X::Proc::Async&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M953.09,-108.3C953.09,-116.02 953.09,-125.29 953.09,-133.89"/>
+<polygon fill="#000000" stroke="#000000" points="949.59,-133.9 953.09,-143.9 956.59,-133.9 949.59,-133.9"/>
+</g>
+<!-- Mu -->
+<g id="node2" class="node">
+<title>Mu</title>
+<g id="a_node2"><a xlink:href="/type/Mu" xlink:title="Mu">
+<ellipse fill="none" stroke="#000000" cx="953.09" cy="-306" rx="27" ry="18"/>
+<text text-anchor="middle" x="953.09" y="-302.3" font-family="FreeSans" font-size="14.00" fill="#000000">Mu</text>
+</a>
+</g>
+</g>
+<!-- Any -->
+<g id="node3" class="node">
+<title>Any</title>
+<g id="a_node3"><a xlink:href="/type/Any" xlink:title="Any">
+<ellipse fill="none" stroke="#000000" cx="953.09" cy="-234" rx="27" ry="18"/>
+<text text-anchor="middle" x="953.09" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Any</text>
+</a>
+</g>
+</g>
+<!-- Any&#45;&gt;Mu -->
+<g id="edge2" class="edge">
+<title>Any&#45;&gt;Mu</title>
+<path fill="none" stroke="#000000" d="M953.09,-252.3C953.09,-260.02 953.09,-269.29 953.09,-277.89"/>
+<polygon fill="#000000" stroke="#000000" points="949.59,-277.9 953.09,-287.9 956.59,-277.9 949.59,-277.9"/>
+</g>
+<!-- Exception&#45;&gt;Any -->
+<g id="edge3" class="edge">
+<title>Exception&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M953.09,-180.3C953.09,-188.02 953.09,-197.29 953.09,-205.89"/>
+<polygon fill="#000000" stroke="#000000" points="949.59,-205.9 953.09,-215.9 956.59,-205.9 949.59,-205.9"/>
+</g>
+<!-- X::Proc::Async::MustBeStarted -->
+<g id="node5" class="node">
+<title>X::Proc::Async::MustBeStarted</title>
+<g id="a_node5"><a xlink:href="/type/X::Proc::Async::MustBeStarted" xlink:title="X::Proc::Async::MustBeStarted">
+<ellipse fill="none" stroke="#000000" cx="152.09" cy="-18" rx="152.17" ry="18"/>
+<text text-anchor="middle" x="152.09" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::Proc::Async::MustBeStarted</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async::MustBeStarted&#45;&gt;X::Proc::Async -->
+<g id="edge10" class="edge">
+<title>X::Proc::Async::MustBeStarted&#45;&gt;X::Proc::Async</title>
+<path fill="none" stroke="#6666ff" d="M261.7,-30.57C290.21,-33.58 313.09,-36 313.09,-36 313.09,-36 696.62,-67.76 869.88,-82.11"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="869.73,-85.61 879.98,-82.95 870.31,-78.63 869.73,-85.61"/>
+</g>
+<!-- X::Proc::Async::MustBeStarted&#45;&gt;Exception -->
+<g id="edge4" class="edge">
+<title>X::Proc::Async::MustBeStarted&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M232.93,-33.33C394.91,-62.05 755.71,-126.01 895.87,-150.86"/>
+<polygon fill="#000000" stroke="#000000" points="895.51,-154.35 905.97,-152.65 896.73,-147.45 895.51,-154.35"/>
+</g>
+<!-- X::Proc::Async::OpenForWriting -->
+<g id="node6" class="node">
+<title>X::Proc::Async::OpenForWriting</title>
+<g id="a_node6"><a xlink:href="/type/X::Proc::Async::OpenForWriting" xlink:title="X::Proc::Async::OpenForWriting">
+<ellipse fill="none" stroke="#000000" cx="479.09" cy="-18" rx="157.07" ry="18"/>
+<text text-anchor="middle" x="479.09" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::Proc::Async::OpenForWriting</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async::OpenForWriting&#45;&gt;X::Proc::Async -->
+<g id="edge11" class="edge">
+<title>X::Proc::Async::OpenForWriting&#45;&gt;X::Proc::Async</title>
+<path fill="none" stroke="#6666ff" d="M571.32,-32.62C660.91,-45.85 795.22,-65.69 878.33,-77.96"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="878.06,-81.46 888.46,-79.46 879.08,-74.53 878.06,-81.46"/>
+</g>
+<!-- X::Proc::Async::OpenForWriting&#45;&gt;Exception -->
+<g id="edge5" class="edge">
+<title>X::Proc::Async::OpenForWriting&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M532.54,-35.01C625.42,-62.84 815.21,-119.69 904.54,-146.46"/>
+<polygon fill="#000000" stroke="#000000" points="903.57,-149.82 914.16,-149.34 905.58,-143.11 903.57,-149.82"/>
+</g>
+<!-- X::Proc::Async::BindOrUse -->
+<g id="node7" class="node">
+<title>X::Proc::Async::BindOrUse</title>
+<g id="a_node7"><a xlink:href="/type/X::Proc::Async::BindOrUse" xlink:title="X::Proc::Async::BindOrUse">
+<ellipse fill="none" stroke="#000000" cx="787.09" cy="-18" rx="132.68" ry="18"/>
+<text text-anchor="middle" x="787.09" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::Proc::Async::BindOrUse</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async::BindOrUse&#45;&gt;X::Proc::Async -->
+<g id="edge12" class="edge">
+<title>X::Proc::Async::BindOrUse&#45;&gt;X::Proc::Async</title>
+<path fill="none" stroke="#6666ff" d="M825.59,-35.24C850.13,-45.59 882.05,-59.04 907.81,-69.91"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="906.77,-73.27 917.35,-73.93 909.49,-66.82 906.77,-73.27"/>
+</g>
+<!-- X::Proc::Async::BindOrUse&#45;&gt;Exception -->
+<g id="edge6" class="edge">
+<title>X::Proc::Async::BindOrUse&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M802.13,-36.16C824.79,-62.02 865.09,-108 865.09,-108 865.09,-108 894.44,-125.68 919.24,-140.61"/>
+<polygon fill="#000000" stroke="#000000" points="917.73,-143.79 928.1,-145.95 921.34,-137.8 917.73,-143.79"/>
+</g>
+<!-- X::Proc::Async::TapBeforeSpawn -->
+<g id="node8" class="node">
+<title>X::Proc::Async::TapBeforeSpawn</title>
+<g id="a_node8"><a xlink:href="/type/X::Proc::Async::TapBeforeSpawn" xlink:title="X::Proc::Async::TapBeforeSpawn">
+<ellipse fill="none" stroke="#000000" cx="1095.09" cy="-18" rx="157.07" ry="18"/>
+<text text-anchor="middle" x="1095.09" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::Proc::Async::TapBeforeSpawn</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async::TapBeforeSpawn&#45;&gt;X::Proc::Async -->
+<g id="edge13" class="edge">
+<title>X::Proc::Async::TapBeforeSpawn&#45;&gt;X::Proc::Async</title>
+<path fill="none" stroke="#6666ff" d="M1061.43,-35.59C1041.29,-45.52 1015.53,-58.22 994.19,-68.74"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="992.46,-65.69 985.03,-73.25 995.55,-71.97 992.46,-65.69"/>
+</g>
+<!-- X::Proc::Async::TapBeforeSpawn&#45;&gt;Exception -->
+<g id="edge7" class="edge">
+<title>X::Proc::Async::TapBeforeSpawn&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1084.67,-36.16C1068.98,-62.02 1041.09,-108 1041.09,-108 1041.09,-108 1011.74,-125.68 986.94,-140.61"/>
+<polygon fill="#000000" stroke="#000000" points="984.83,-137.8 978.07,-145.95 988.44,-143.79 984.83,-137.8"/>
+</g>
+<!-- X::Proc::Async::AlreadyStarted -->
+<g id="node9" class="node">
+<title>X::Proc::Async::AlreadyStarted</title>
+<g id="a_node9"><a xlink:href="/type/X::Proc::Async::AlreadyStarted" xlink:title="X::Proc::Async::AlreadyStarted">
+<ellipse fill="none" stroke="#000000" cx="1428.09" cy="-18" rx="157.07" ry="18"/>
+<text text-anchor="middle" x="1428.09" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::Proc::Async::AlreadyStarted</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async::AlreadyStarted&#45;&gt;X::Proc::Async -->
+<g id="edge14" class="edge">
+<title>X::Proc::Async::AlreadyStarted&#45;&gt;X::Proc::Async</title>
+<path fill="none" stroke="#6666ff" d="M1335.66,-32.62C1245.88,-45.85 1111.29,-65.69 1028,-77.96"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1027.23,-74.54 1017.85,-79.46 1028.25,-81.46 1027.23,-74.54"/>
+</g>
+<!-- X::Proc::Async::AlreadyStarted&#45;&gt;Exception -->
+<g id="edge8" class="edge">
+<title>X::Proc::Async::AlreadyStarted&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1374.52,-35.01C1281.45,-62.84 1091.26,-119.69 1001.73,-146.46"/>
+<polygon fill="#000000" stroke="#000000" points="1000.68,-143.12 992.1,-149.34 1002.68,-149.83 1000.68,-143.12"/>
+</g>
+<!-- X::Proc::Async::CharsOrBytes -->
+<g id="node10" class="node">
+<title>X::Proc::Async::CharsOrBytes</title>
+<g id="a_node10"><a xlink:href="/type/X::Proc::Async::CharsOrBytes" xlink:title="X::Proc::Async::CharsOrBytes">
+<ellipse fill="none" stroke="#000000" cx="1751.09" cy="-18" rx="147.57" ry="18"/>
+<text text-anchor="middle" x="1751.09" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::Proc::Async::CharsOrBytes</text>
+</a>
+</g>
+</g>
+<!-- X::Proc::Async::CharsOrBytes&#45;&gt;X::Proc::Async -->
+<g id="edge15" class="edge">
+<title>X::Proc::Async::CharsOrBytes&#45;&gt;X::Proc::Async</title>
+<path fill="none" stroke="#6666ff" d="M1644.63,-30.53C1616.63,-33.56 1594.09,-36 1594.09,-36 1594.09,-36 1209.95,-67.76 1036.42,-82.11"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1035.98,-78.63 1026.31,-82.95 1036.56,-85.61 1035.98,-78.63"/>
+</g>
+<!-- X::Proc::Async::CharsOrBytes&#45;&gt;Exception -->
+<g id="edge9" class="edge">
+<title>X::Proc::Async::CharsOrBytes&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1671.29,-33.2C1510.32,-61.84 1150.16,-125.93 1010.22,-150.83"/>
+<polygon fill="#000000" stroke="#000000" points="1009.37,-147.43 1000.14,-152.63 1010.6,-154.32 1009.37,-147.43"/>
+</g>
+</g>
+</svg>
+
+  <p class="fallback">
+    <a
+      rel="alternate"
+      href="/images/type-graph-X%3A%3AProc%3A%3AAsync.svg"
+      type="image/svg+xml"
+      >Expand above chart</a
+    >
+  </p>
+</figure>
+<h1 id="Routines_supplied_by_class_Exception"><a class="u" href="#___top" title="go to top of document">Routines supplied by class Exception</a></h1>
+<p>X::Proc::Async inherits from class <a href="/Documentable/integration-test/type/Exception">Exception</a>, which provides the following routines:</p>
+<h2 id="(Exception)_method_message"><a href="/Documentable/integration-test/type/Exception#method_message">(Exception) method message</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method message(Exception:D: --&gt; Str:D)</pre>
+<p>This is a stub that must be overwritten by subclasses, and should return the exception message.</p>
+<p>Special care should be taken that this method does not produce an exception itself.</p>
+<pre class="pod-block-code">try die &quot;Something bad happened&quot;;
+if ($!) {
+    say $!.message; # OUTPUT: «Something bad happened.␤»
+}</pre>
+<h2 id="(Exception)_method_backtrace"><a href="/Documentable/integration-test/type/Exception#method_backtrace">(Exception) method backtrace</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method backtrace(Exception:D:)</pre>
+<p>Returns the backtrace associated with the exception in a <a href="/Documentable/integration-test/type/Backtrace"><code>Backtrace</code></a> object or an empty string if there is none. Only makes sense on exceptions that have been thrown at least once.</p>
+<pre class="pod-block-code">try die &quot;Something bad happened&quot;;
+with $! { .backtrace.print ; }</pre>
+<h2 id="(Exception)_method_throw"><a href="/Documentable/integration-test/type/Exception#method_throw">(Exception) method throw</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method throw(Exception:D:)</pre>
+<p>Throws the exception.</p>
+<pre class="pod-block-code">my $exception = X::AdHoc.new;    # Totally fine
+try $exception.throw;            # Throws
+if ($!) { #`( some handling ) }; # Suppress the exception</pre>
+<h2 id="(Exception)_method_resume"><a href="/Documentable/integration-test/type/Exception#method_resume">(Exception) method resume</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method resume(Exception:D:)</pre>
+<p>Resumes control flow where <code>.throw</code> left it when handled in a <code>CATCH</code> block.</p>
+<pre class="pod-block-code"># For example, resume control flow for any exception
+CATCH { default { .resume } }</pre>
+<h2 id="(Exception)_method_rethrow"><a href="/Documentable/integration-test/type/Exception#method_rethrow">(Exception) method rethrow</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method rethrow(Exception:D:)</pre>
+<p>Rethrows an exception that has already been thrown at least once. This is different from <code>throw</code> in that it preserves the original backtrace.</p>
+<pre class="pod-block-code">sub f() { die &#39;Bad&#39; };
+sub g() { try f; CATCH { default { .rethrow } } };
+g;
+CATCH { default { say .backtrace.full } };</pre>
+<h2 id="(Exception)_routine_fail"><a href="/Documentable/integration-test/type/Exception#routine_fail">(Exception) routine fail</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi sub    fail(Exception $e)
+method       fail(Exception:D:)</pre>
+<p>Exits the calling <code>Routine</code> and returns a <a href="/Documentable/integration-test/type/Failure">Failure</a> object wrapping the exception.</p>
+<pre class="pod-block-code"># A custom exception defined
+class ForbiddenWord is Exception {
+    has Str $.word;
+    method message { &quot;This word is forbidden: «$!word»&quot; }
+}
+
+sub say-word ( $word ) {
+    ForbiddenWord.new(:word($word)).fail if $word eq &#39;foo&#39;;
+    $word.say;
+}
+
+my $result = say-word(&quot;foo&quot;);
+say $result.exception;
+</pre>
+<p>The routine form works in the same way, with an alternative syntax: <code>fail ForbiddenWord.new(:word($word))</code>.</p>
+<h2 id="(Exception)_method_gist"><a href="/Documentable/integration-test/type/Exception#method_gist">(Exception) method gist</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi method gist(Exception:D:)</pre>
+<p>Returns whatever the exception printer should produce for this exception. The default implementation returns message and backtrace separated by a newline.</p>
+<pre class="pod-block-code">my $e = X::AdHoc.new(payload =&gt; &quot;This exception is pretty bad&quot;);
+try $e.throw;
+if ($!) { say $!.gist; };
+# OUTPUT: «This exception is pretty bad
+#   in block &lt;unit&gt; at &lt;unknown file&gt; line 1␤»</pre>
+<h2 id="(Exception)_routine_die"><a href="/Documentable/integration-test/type/Exception#routine_die">(Exception) routine die</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi sub die()
+multi sub die(*@message)
+multi sub die(Exception:D $e)
+method    die(Exception:D:)</pre>
+<p>Throws a fatal <a href="/Documentable/integration-test/type/Exception">Exception</a>. The default exception handler prints each element of the list to <a href="/Documentable/integration-test/language/variables#index-entry-%24%2AERR"><code>$*ERR</code></a> (STDERR).</p>
+<pre class="pod-block-code">die &quot;Important reason&quot;;
+</pre>
+<p>If the subroutine form is called without arguments, the value of <a href="/Documentable/integration-test/syntax/$!"><code>$!</code> variable</a> is checked. If it is set to a <a href="/Documentable/integration-test/language/mop#index-entry-syntax_DEFINITE-DEFINITE"><code>.DEFINITE</code></a> value, its value will be used as the <a href="/Documentable/integration-test/type/Exception">Exception</a> to throw if it&#39;s of type <a href="/Documentable/integration-test/type/Exception">Exception</a>, otherwise, it will be used as payload of <a href="/Documentable/integration-test/type/X::AdHoc">X::AdHoc</a> exception. If <code>$!</code> is not <code>.DEFINITE</code>, <a href="/Documentable/integration-test/type/X::AdHoc">X::AdHoc</a> with string <code>&quot;Died&quot;</code> as payload will be thrown.</p>
+<p><code>die</code> will print by default the line number where it happens</p>
+<pre class="pod-block-code">die &quot;Dead&quot;;
+# OUTPUT: «(exit code 1) Dead␤
+# in block &lt;unit&gt; at /tmp/dead.p6 line 1␤␤»
+</pre>
+<p>However, that default behavior is governed at the <code>Exception</code> level and thus can be changed to anything we want by capturing the exception using <code>CATCH</code>. This can be used, for instance, to suppress line numbers.</p>
+<pre class="pod-block-code">CATCH {
+  default {
+    .payload.say
+  }
+};
+die &quot;Dead&quot; # OUTPUT: «Dead␤»
+</pre>
+<h2 id="(Exception)_sub_warn"><a href="/Documentable/integration-test/type/Exception#sub_warn">(Exception) sub warn</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi sub warn(*@message)</pre>
+<p>Throws a resumable warning exception, which is considered a control exception, and hence is invisible to most normal exception handlers. The outermost control handler will print the warning to <code>$*ERR</code>. After printing the warning, the exception is resumed where it was thrown. To override this behavior, catch the exception in a <code>CONTROL</code> block. A <code>quietly {...}</code> block is the opposite of a <code>try {...}</code> block in that it will suppress any warnings but pass fatal exceptions through.</p>
+<p>To simply print to <code>$*ERR</code>, please use <code>note</code> instead. <code>warn</code> should be reserved for use in threatening situations when you don&#39;t quite want to throw an exception.</p>
+<pre class="pod-block-code">warn &quot;Warning message&quot;;</pre>
+
+        </div>
+    </div>
+
+    
+
+    <footer class="pretty-box yellow">
+        <p>
+            Generated from <a href="https://github.com/Raku/doc/tree/master/docs/Type/X/Proc/Async.pod6">https://github.com/Raku/doc/tree/master/docs/Type/X/Proc/Async.pod6</a>.
+        </p>
+        <p>
+            This is a work in progress to document Raku (formerly known as Perl 6), and
+            known to be incomplete.
+        </p>
+        <p>
+            <a href="https://github.com/raku/doc/blob/master/CONTRIBUTING.md#reporting-bugs">
+                Please report any issues
+            </a>
+            Your contribution is appreciated.
+        </p>
+        <p>
+            This documentation is provided under the terms of the
+            <a href="https://raw.githubusercontent.com/raku/doc/master/LICENSE">
+                Artistic License 2.0
+            </a>. The Camelia image is
+            <a href="https://raw.githubusercontent.com/raku/mu/master/misc/camelia.txt">
+                copyright © 2009 by Larry Wall.
+            </a>
+            <!-- CREDITS -->
+            <!--External Link Image by Zapyon, CCA-SA 4.0. Derived from Wikimedia Foundation https://commons.wikimedia.org/wiki/File:External-link-04-bold-12x12.svg -->
+        </p>
+    </footer>
+
+    <script type="text/javascript" src="/Documentable/integration-test/js/app.js?v=1"></script>
+    <script type="text/javascript" src="/Documentable/integration-test/js/search.js?v=3"></script>
+</body>
+</html>
+

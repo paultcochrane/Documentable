@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>role Associative</title>
+    <meta charset="UTF-8"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Documentable/integration-test/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/Documentable/integration-test/css/app.css" media="screen" title="default" />
+    <noscript> <style> #search { visibility: hidden; } </style> </noscript>
+</head>
+
+<body class="pod">
+
+    <div id="___top"></div>
+
+    <div id="header" class="pretty-box green">
+
+        <a href="/Documentable/integration-test/">
+            <img src="/Documentable/integration-test/images/Camelia.svg"alt="»ö«"id="logo"width="62"height="48"/> &nbsp;Raku Documentation
+        </a>
+
+        <div id="search" class="ui-widget">
+            <div class="green">
+                <input placeholder="Loading..." id="query" accesskey="f" title="Enter term to search for (hit Esc to focus)"/>
+            </div>
+            <p id="not-found-message">
+                Not in Index (<a href="" id="try-web-search">try site search</a>)
+            </p>
+        </div>
+        
+        <div class="menu">
+            
+            <div class="menu-items dark-green">
+                <a class='menu-item darker-green' href='https://raku.org'><strong>Raku homepage</strong></a>
+                    <a class="menu-item " href="/Documentable/integration-test/language.html"> Language </a>
+                    <a class="menu-item selected darker-green" href="/Documentable/integration-test/type.html"> Types </a>
+                    <a class="menu-item " href="/Documentable/integration-test/routine.html"> Routines </a>
+                    <a class="menu-item " href="https://webchat.freenode.net/?channels=#raku"> Chat with us </a>
+            </div>
+            
+            <div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green">
+                    <a class="menu-item" href="/Documentable/integration-test/type.html"> All </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-basic.html"> Basic </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-html-generation.html"> HTML Generation </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-exception.html"> Exceptions </a>
+            </div></div></div></div>
+        
+        </div>
+    </div>
+
+    <div id="content" class="pretty-box yellow content_fragment">
+
+        <div align="right" style="display:;">
+            <button title="Edit this page"  class="pencil" onclick="location='https://github.com/Raku/doc/tree/master/docs/Type/Associative.pod6'">
+                <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="pencil" fill="#000000">
+                            <path d="M0,12 L0,15 L3,15 L11,7 L8,4 L0,12 L0,12 Z M3,14 L1,14 L1,12 L2,12 L2,13 L3,13 L3,14 L3,14 Z M13.3,4.7 L12,6 L9,3 L10.3,1.7 C10.69,1.31 11.32,1.31 11.71,1.7 L13.3,3.29 C13.69,3.68 13.69,4.31 13.3,4.7 L13.3,4.7 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <h1 class="title">role Associative</h1>
+        <p class="subtitle">Object that supports looking up values by key</p>
+
+        <nav class="indexgroup">
+<table id="TOC">
+<caption><h2 id="TOC_Title">Table of Contents</h2></caption>
+                                <tr class="toc-level-1"><td class="toc-number">1</td><td class="toc-text"><a href="#Methods">Methods</a></td></tr>
+ <tr class="toc-level-2"><td class="toc-number">1.1</td><td class="toc-text"><a href="#method_of">method of</a></td></tr>
+                <tr class="toc-level-2"><td class="toc-number">1.2</td><td class="toc-text"><a href="#method_keyof">method keyof</a></td></tr>
+         <tr class="toc-level-1"><td class="toc-number">2</td><td class="toc-text"><a href="#Methods_that_should_be_provided">Methods that should be provided</a></td></tr>
+  <tr class="toc-level-2"><td class="toc-number">2.1</td><td class="toc-text"><a href="#method_AT-KEY">method AT-KEY</a></td></tr>
+   <tr class="toc-level-2"><td class="toc-number">2.2</td><td class="toc-text"><a href="#method_EXISTS-KEY">method EXISTS-KEY</a></td></tr>
+     <tr class="toc-level-2"><td class="toc-number">2.3</td><td class="toc-text"><a href="#method_STORE">method STORE</a></td></tr>
+             <tr class="toc-level-1"><td class="toc-number">3</td><td class="toc-text"><a href="#See_also">See also</a></td></tr>
+      <tr class="toc-level-1"><td class="toc-number">4</td><td class="toc-text"><a href="#Type_Graph">Type Graph</a></td></tr>
+ 
+</table>
+</nav>
+
+        <div class="pod-body ">
+            <pre class="pod-block-code">role Associative[::TValue = Mu, ::TKey = Str(Any)] { }</pre>
+<p>A common role for types that support name-based lookup through <a href="/Documentable/integration-test/language/operators#postcircumfix_{_}">postcircumfix:&lt;{ }&gt;</a>, for example <a href="/Documentable/integration-test/type/Hash">Hash</a> and <a href="/Documentable/integration-test/type/Map">Map</a>. It is used for type checks in operators that expect to find specific methods to call. See <a href="/Documentable/integration-test/language/subscripts#Methods_to_implement_for_associative_subscripting">Subscripts</a> for details.</p>
+<p>The <code>%</code> sigil restricts variables to objects that do <code>Associative</code>, so you will have to mix in that role if you want to use it for your classes.</p>
+<pre class="pod-block-code">class Whatever {};
+my %whatever := Whatever.new;
+# OUTPUT: «Type check failed in binding; expected Associative but got Whatever
+</pre>
+<p>Please note that we are using binding <code>:=</code> here, since by default <code>%</code> assignments expect a <code>Hash</code> in the right-hand side. However, with the Associative role:</p>
+<pre class="pod-block-code">class Whatever is Associative {};
+my %whatever := Whatever.new;</pre>
+<p>will be syntactically correct.</p>
+<h1 id="Methods"><a class="u" href="#___top" title="go to top of document">Methods</a></h1>
+<h2 id="method_of"><a class="u" href="#___top" title="go to top of document">method of</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method of()</pre>
+<p><code>Associative</code> is actually a <a href="/Documentable/integration-test/language/objects#Parameterized_roles">parameterized role</a> which can use different classes for keys and values. As seen at the top of the document, by default it coerces to <code>Str</code> for the key and uses a very generic <code>Mu</code> for value.</p>
+<pre class="pod-block-code">my %any-hash;
+say %any-hash.of;#  OUTPUT: «(Mu)␤»</pre>
+<p>The value is the first parameter you use when instantiating <code>Associative</code> with particular classes:</p>
+<pre class="pod-block-code">class DateHash is Hash does Associative[Cool,DateTime] {};
+my %date-hash := DateHash.new;
+say %date-hash.of; # OUTPUT: «(Cool)␤»</pre>
+<h2 id="method_keyof"><a class="u" href="#___top" title="go to top of document">method keyof</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method keyof()</pre>
+<p>Returns the parameterized key used for the Associative role, which is <code>Any</code> coerced to <code>Str</code> by default. This is the class used as second parameter when you use the parameterized version of Associative.</p>
+<pre class="pod-block-code">my %any-hash;
+%any-hash.keyof; #OUTPUT: «(Str(Any))␤»</pre>
+<h1 id="Methods_that_should_be_provided"><a class="u" href="#___top" title="go to top of document">Methods that should be provided</a></h1>
+<p>You need to provide these methods if you want your class to implement the Associative role.</p>
+<h2 id="method_AT-KEY"><a class="u" href="#___top" title="go to top of document">method AT-KEY</a></h2>
+<pre class="pod-block-code">method AT-KEY(\key)</pre>
+<p>Should return the value / container at the given key.</p>
+<h2 id="method_EXISTS-KEY"><a class="u" href="#___top" title="go to top of document">method EXISTS-KEY</a></h2>
+<pre class="pod-block-code">method EXISTS-KEY(\key)</pre>
+<p>Should return a <code>Bool</code> indicating whether the given key actually has a value.</p>
+<h2 id="method_STORE"><a class="u" href="#___top" title="go to top of document">method STORE</a></h2>
+<pre class="pod-block-code">method STORE(\values, :$initialize)</pre>
+<p>This method should only be supplied if you want to support the:</p>
+<pre class="pod-block-code">my %h is Foo = a =&gt; 42, b =&gt; 666;
+</pre>
+<p>syntax for binding your implementation of the <code>Associative</code> role.</p>
+<p>Should accept the values to (re-)initialize the object with, which either could consist of <code>Pair</code>s, or separate key/value pairs. The optional named parameter will contain a <code>True</code> value when the method is called on the object for the first time. Should return the invocant.</p>
+<h1 id="See_also"><a class="u" href="#___top" title="go to top of document">See also</a></h1>
+<p>See <a href="/Documentable/integration-test/language/subscripts#Methods_to_implement_for_associative_subscripting">Methods to implement for associative subscripting</a> for information about additional methods that can be implemented for the <code>Associative</code> role.</p>
+<h1 id="Type_Graph"><a class="u" href="#___top" title="go to top of document">Type Graph</a></h1>
+<figure>
+  <figcaption>Type relations for <code>Associative</code></figcaption>
+  <svg width="884pt" height="476pt"
+ viewBox="0.00 0.00 883.59 476.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 472)">
+<title>perl6&#45;type&#45;graph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-472 879.59,-472 879.59,4 -4,4"/>
+<!-- Associative -->
+<g id="node1" class="node">
+<title>Associative</title>
+<g id="a_node1"><a xlink:href="/type/Associative" xlink:title="Associative">
+<ellipse fill="none" stroke="#6666ff" cx="552" cy="-450" rx="64.19" ry="18"/>
+<text text-anchor="middle" x="552" y="-446.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Associative</text>
+</a>
+</g>
+</g>
+<!-- Mu -->
+<g id="node2" class="node">
+<title>Mu</title>
+<g id="a_node2"><a xlink:href="/type/Mu" xlink:title="Mu">
+<ellipse fill="none" stroke="#000000" cx="393" cy="-378" rx="27" ry="18"/>
+<text text-anchor="middle" x="393" y="-374.3" font-family="FreeSans" font-size="14.00" fill="#000000">Mu</text>
+</a>
+</g>
+</g>
+<!-- Any -->
+<g id="node3" class="node">
+<title>Any</title>
+<g id="a_node3"><a xlink:href="/type/Any" xlink:title="Any">
+<ellipse fill="none" stroke="#000000" cx="388" cy="-306" rx="27" ry="18"/>
+<text text-anchor="middle" x="388" y="-302.3" font-family="FreeSans" font-size="14.00" fill="#000000">Any</text>
+</a>
+</g>
+</g>
+<!-- Any&#45;&gt;Mu -->
+<g id="edge1" class="edge">
+<title>Any&#45;&gt;Mu</title>
+<path fill="none" stroke="#000000" d="M389.24,-324.3C389.79,-332.02 390.45,-341.29 391.06,-349.89"/>
+<polygon fill="#000000" stroke="#000000" points="387.57,-350.17 391.78,-359.9 394.56,-349.67 387.57,-350.17"/>
+</g>
+<!-- Telemetry -->
+<g id="node4" class="node">
+<title>Telemetry</title>
+<g id="a_node4"><a xlink:href="/type/Telemetry" xlink:title="Telemetry">
+<ellipse fill="none" stroke="#000000" cx="701" cy="-234" rx="54.69" ry="18"/>
+<text text-anchor="middle" x="701" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Telemetry</text>
+</a>
+</g>
+</g>
+<!-- Telemetry&#45;&gt;Any -->
+<g id="edge2" class="edge">
+<title>Telemetry&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M659.74,-245.96C647.36,-249.25 637,-252 637,-252 637,-252 492.54,-282.75 423.69,-297.4"/>
+<polygon fill="#000000" stroke="#000000" points="422.76,-294.02 413.71,-299.53 424.22,-300.87 422.76,-294.02"/>
+</g>
+<!-- Telemetry::Period -->
+<g id="node5" class="node">
+<title>Telemetry::Period</title>
+<g id="a_node5"><a xlink:href="/type/Telemetry::Period" xlink:title="Telemetry::Period">
+<ellipse fill="none" stroke="#000000" cx="782" cy="-162" rx="93.68" ry="18"/>
+<text text-anchor="middle" x="782" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#000000">Telemetry::Period</text>
+</a>
+</g>
+</g>
+<!-- Telemetry::Period&#45;&gt;Associative -->
+<g id="edge14" class="edge">
+<title>Telemetry::Period&#45;&gt;Associative</title>
+<path fill="none" stroke="#6666ff" d="M801.62,-179.77C819.78,-195.3 844,-216 844,-216 844,-216 844,-252 844,-252 844,-252 650,-396 650,-396 650,-396 617.14,-413.77 589.47,-428.73"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="587.48,-425.83 580.35,-433.67 590.81,-431.99 587.48,-425.83"/>
+</g>
+<!-- Telemetry::Period&#45;&gt;Telemetry -->
+<g id="edge3" class="edge">
+<title>Telemetry::Period&#45;&gt;Telemetry</title>
+<path fill="none" stroke="#000000" d="M762.39,-179.95C751.82,-189.08 738.62,-200.49 727.18,-210.37"/>
+<polygon fill="#000000" stroke="#000000" points="724.87,-207.75 719.59,-216.93 729.45,-213.04 724.87,-207.75"/>
+</g>
+<!-- QuantHash -->
+<g id="node6" class="node">
+<title>QuantHash</title>
+<g id="a_node6"><a xlink:href="/type/QuantHash" xlink:title="QuantHash">
+<ellipse fill="none" stroke="#6666ff" cx="293" cy="-378" rx="54.69" ry="18"/>
+<text text-anchor="middle" x="293" y="-374.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">QuantHash</text>
+</a>
+</g>
+</g>
+<!-- QuantHash&#45;&gt;Associative -->
+<g id="edge15" class="edge">
+<title>QuantHash&#45;&gt;Associative</title>
+<path fill="none" stroke="#6666ff" d="M333.75,-390.01C377.87,-401.94 448.46,-421.01 497.36,-434.23"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="496.57,-437.64 507.14,-436.88 498.4,-430.89 496.57,-437.64"/>
+</g>
+<!-- Cool -->
+<g id="node7" class="node">
+<title>Cool</title>
+<g id="a_node7"><a xlink:href="/type/Cool" xlink:title="Cool">
+<ellipse fill="none" stroke="#000000" cx="479" cy="-234" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="479" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Cool</text>
+</a>
+</g>
+</g>
+<!-- Cool&#45;&gt;Any -->
+<g id="edge4" class="edge">
+<title>Cool&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M461.02,-248.83C447.3,-259.39 428.23,-274.06 413.01,-285.76"/>
+<polygon fill="#000000" stroke="#000000" points="410.81,-283.04 405.02,-291.91 415.08,-288.59 410.81,-283.04"/>
+</g>
+<!-- Iterable -->
+<g id="node8" class="node">
+<title>Iterable</title>
+<g id="a_node8"><a xlink:href="/type/Iterable" xlink:title="Iterable">
+<ellipse fill="none" stroke="#6666ff" cx="578" cy="-234" rx="50.09" ry="18"/>
+<text text-anchor="middle" x="578" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Iterable</text>
+</a>
+</g>
+</g>
+<!-- Map -->
+<g id="node9" class="node">
+<title>Map</title>
+<g id="a_node9"><a xlink:href="/type/Map" xlink:title="Map">
+<ellipse fill="none" stroke="#000000" cx="479" cy="-162" rx="27" ry="18"/>
+<text text-anchor="middle" x="479" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#000000">Map</text>
+</a>
+</g>
+</g>
+<!-- Map&#45;&gt;Associative -->
+<g id="edge17" class="edge">
+<title>Map&#45;&gt;Associative</title>
+<path fill="none" stroke="#6666ff" d="M452.56,-165.93C352.15,-177.04 0,-216 0,-216 0,-216 0,-252 0,-252 0,-252 229,-396 229,-396 229,-396 393.76,-423.04 487.94,-438.49"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="487.5,-441.96 497.94,-440.13 488.64,-435.06 487.5,-441.96"/>
+</g>
+<!-- Map&#45;&gt;Cool -->
+<g id="edge5" class="edge">
+<title>Map&#45;&gt;Cool</title>
+<path fill="none" stroke="#000000" d="M479,-180.3C479,-188.02 479,-197.29 479,-205.89"/>
+<polygon fill="#000000" stroke="#000000" points="475.5,-205.9 479,-215.9 482.5,-205.9 475.5,-205.9"/>
+</g>
+<!-- Map&#45;&gt;Iterable -->
+<g id="edge16" class="edge">
+<title>Map&#45;&gt;Iterable</title>
+<path fill="none" stroke="#6666ff" d="M497.16,-175.84C511.32,-185.86 531.31,-199.98 547.86,-211.69"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="545.97,-214.64 556.16,-217.55 550.01,-208.92 545.97,-214.64"/>
+</g>
+<!-- Pair -->
+<g id="node10" class="node">
+<title>Pair</title>
+<g id="a_node10"><a xlink:href="/type/Pair" xlink:title="Pair">
+<ellipse fill="none" stroke="#000000" cx="804" cy="-234" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="804" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Pair</text>
+</a>
+</g>
+</g>
+<!-- Pair&#45;&gt;Associative -->
+<g id="edge18" class="edge">
+<title>Pair&#45;&gt;Associative</title>
+<path fill="none" stroke="#6666ff" d="M787.07,-249.37C744.23,-285.76 631.2,-381.74 579.06,-426.02"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="576.59,-423.53 571.23,-432.67 581.12,-428.86 576.59,-423.53"/>
+</g>
+<!-- Pair&#45;&gt;Any -->
+<g id="edge6" class="edge">
+<title>Pair&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M779.97,-245.48C771.94,-248.97 765,-252 765,-252 765,-252 518.53,-286.65 424.16,-299.92"/>
+<polygon fill="#000000" stroke="#000000" points="423.63,-296.46 414.21,-301.32 424.6,-303.39 423.63,-296.46"/>
+</g>
+<!-- Hash -->
+<g id="node11" class="node">
+<title>Hash</title>
+<g id="a_node11"><a xlink:href="/type/Hash" xlink:title="Hash">
+<ellipse fill="none" stroke="#000000" cx="423" cy="-90" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="423" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">Hash</text>
+</a>
+</g>
+</g>
+<!-- Hash&#45;&gt;Map -->
+<g id="edge7" class="edge">
+<title>Hash&#45;&gt;Map</title>
+<path fill="none" stroke="#000000" d="M435.43,-106.54C442.75,-115.69 452.16,-127.45 460.35,-137.69"/>
+<polygon fill="#000000" stroke="#000000" points="457.63,-139.89 466.61,-145.51 463.09,-135.51 457.63,-139.89"/>
+</g>
+<!-- PseudoStash -->
+<g id="node12" class="node">
+<title>PseudoStash</title>
+<g id="a_node12"><a xlink:href="/type/PseudoStash" xlink:title="PseudoStash">
+<ellipse fill="none" stroke="#000000" cx="536" cy="-90" rx="64.19" ry="18"/>
+<text text-anchor="middle" x="536" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#000000">PseudoStash</text>
+</a>
+</g>
+</g>
+<!-- PseudoStash&#45;&gt;Map -->
+<g id="edge8" class="edge">
+<title>PseudoStash&#45;&gt;Map</title>
+<path fill="none" stroke="#000000" d="M522.2,-107.95C514.89,-116.92 505.8,-128.08 497.85,-137.85"/>
+<polygon fill="#000000" stroke="#000000" points="495.1,-135.68 491.5,-145.64 500.53,-140.1 495.1,-135.68"/>
+</g>
+<!-- Baggy -->
+<g id="node13" class="node">
+<title>Baggy</title>
+<g id="a_node13"><a xlink:href="/type/Baggy" xlink:title="Baggy">
+<ellipse fill="none" stroke="#6666ff" cx="161" cy="-306" rx="35.19" ry="18"/>
+<text text-anchor="middle" x="161" y="-302.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Baggy</text>
+</a>
+</g>
+</g>
+<!-- Baggy&#45;&gt;QuantHash -->
+<g id="edge19" class="edge">
+<title>Baggy&#45;&gt;QuantHash</title>
+<path fill="none" stroke="#6666ff" d="M184.6,-319.51C204.54,-330.09 233.44,-345.42 256.39,-357.59"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="255.02,-360.82 265.5,-362.41 258.3,-354.64 255.02,-360.82"/>
+</g>
+<!-- Setty -->
+<g id="node14" class="node">
+<title>Setty</title>
+<g id="a_node14"><a xlink:href="/type/Setty" xlink:title="Setty">
+<ellipse fill="none" stroke="#6666ff" cx="296" cy="-306" rx="35.19" ry="18"/>
+<text text-anchor="middle" x="296" y="-302.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Setty</text>
+</a>
+</g>
+</g>
+<!-- Setty&#45;&gt;QuantHash -->
+<g id="edge20" class="edge">
+<title>Setty&#45;&gt;QuantHash</title>
+<path fill="none" stroke="#6666ff" d="M295.26,-324.3C294.93,-332.02 294.53,-341.29 294.16,-349.89"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="290.66,-349.75 293.73,-359.9 297.66,-350.05 290.66,-349.75"/>
+</g>
+<!-- Stash -->
+<g id="node15" class="node">
+<title>Stash</title>
+<g id="a_node15"><a xlink:href="/type/Stash" xlink:title="Stash">
+<ellipse fill="none" stroke="#000000" cx="423" cy="-18" rx="35.19" ry="18"/>
+<text text-anchor="middle" x="423" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">Stash</text>
+</a>
+</g>
+</g>
+<!-- Stash&#45;&gt;Hash -->
+<g id="edge9" class="edge">
+<title>Stash&#45;&gt;Hash</title>
+<path fill="none" stroke="#000000" d="M423,-36.3C423,-44.02 423,-53.29 423,-61.89"/>
+<polygon fill="#000000" stroke="#000000" points="419.5,-61.9 423,-71.9 426.5,-61.9 419.5,-61.9"/>
+</g>
+<!-- Bag -->
+<g id="node16" class="node">
+<title>Bag</title>
+<g id="a_node16"><a xlink:href="/type/Bag" xlink:title="Bag">
+<ellipse fill="none" stroke="#000000" cx="116" cy="-234" rx="27" ry="18"/>
+<text text-anchor="middle" x="116" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Bag</text>
+</a>
+</g>
+</g>
+<!-- Bag&#45;&gt;Any -->
+<g id="edge10" class="edge">
+<title>Bag&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M137.36,-245.09C145.11,-248.75 152,-252 152,-252 152,-252 340,-288 340,-288 340,-288 346.68,-290.36 355.05,-293.33"/>
+<polygon fill="#000000" stroke="#000000" points="353.97,-296.66 364.56,-296.7 356.3,-290.06 353.97,-296.66"/>
+</g>
+<!-- Bag&#45;&gt;Baggy -->
+<g id="edge21" class="edge">
+<title>Bag&#45;&gt;Baggy</title>
+<path fill="none" stroke="#6666ff" d="M126.21,-250.88C131.77,-259.53 138.77,-270.42 145.04,-280.17"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="142.17,-282.17 150.52,-288.69 148.05,-278.39 142.17,-282.17"/>
+</g>
+<!-- BagHash -->
+<g id="node17" class="node">
+<title>BagHash</title>
+<g id="a_node17"><a xlink:href="/type/BagHash" xlink:title="BagHash">
+<ellipse fill="none" stroke="#000000" cx="206" cy="-234" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="206" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">BagHash</text>
+</a>
+</g>
+</g>
+<!-- BagHash&#45;&gt;Any -->
+<g id="edge11" class="edge">
+<title>BagHash&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M237.29,-247.03C270.26,-259.72 321.96,-279.6 355.42,-292.47"/>
+<polygon fill="#000000" stroke="#000000" points="354.58,-295.9 365.17,-296.22 357.1,-289.36 354.58,-295.9"/>
+</g>
+<!-- BagHash&#45;&gt;Baggy -->
+<g id="edge22" class="edge">
+<title>BagHash&#45;&gt;Baggy</title>
+<path fill="none" stroke="#6666ff" d="M195.34,-251.59C189.9,-260.05 183.17,-270.51 177.12,-279.92"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="174.05,-278.23 171.59,-288.53 179.94,-282.01 174.05,-278.23"/>
+</g>
+<!-- Mixy -->
+<g id="node18" class="node">
+<title>Mixy</title>
+<g id="a_node18"><a xlink:href="/type/Mixy" xlink:title="Mixy">
+<ellipse fill="none" stroke="#6666ff" cx="40" cy="-234" rx="30.59" ry="18"/>
+<text text-anchor="middle" x="40" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">Mixy</text>
+</a>
+</g>
+</g>
+<!-- Mixy&#45;&gt;Baggy -->
+<g id="edge23" class="edge">
+<title>Mixy&#45;&gt;Baggy</title>
+<path fill="none" stroke="#6666ff" d="M61.08,-247.19C80.04,-258.16 108.14,-274.42 129.72,-286.9"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="128.12,-290.02 138.52,-292 131.62,-283.96 128.12,-290.02"/>
+</g>
+<!-- Set -->
+<g id="node19" class="node">
+<title>Set</title>
+<g id="a_node19"><a xlink:href="/type/Set" xlink:title="Set">
+<ellipse fill="none" stroke="#000000" cx="296" cy="-234" rx="27" ry="18"/>
+<text text-anchor="middle" x="296" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Set</text>
+</a>
+</g>
+</g>
+<!-- Set&#45;&gt;Any -->
+<g id="edge12" class="edge">
+<title>Set&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M313.3,-248.17C327.18,-258.73 346.86,-273.7 362.54,-285.63"/>
+<polygon fill="#000000" stroke="#000000" points="360.7,-288.62 370.77,-291.89 364.93,-283.05 360.7,-288.62"/>
+</g>
+<!-- Set&#45;&gt;Setty -->
+<g id="edge24" class="edge">
+<title>Set&#45;&gt;Setty</title>
+<path fill="none" stroke="#6666ff" d="M296,-252.3C296,-260.02 296,-269.29 296,-277.89"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="292.5,-277.9 296,-287.9 299.5,-277.9 292.5,-277.9"/>
+</g>
+<!-- SetHash -->
+<g id="node20" class="node">
+<title>SetHash</title>
+<g id="a_node20"><a xlink:href="/type/SetHash" xlink:title="SetHash">
+<ellipse fill="none" stroke="#000000" cx="386" cy="-234" rx="44.69" ry="18"/>
+<text text-anchor="middle" x="386" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">SetHash</text>
+</a>
+</g>
+</g>
+<!-- SetHash&#45;&gt;Any -->
+<g id="edge13" class="edge">
+<title>SetHash&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M386.49,-252.3C386.71,-260.02 386.98,-269.29 387.23,-277.89"/>
+<polygon fill="#000000" stroke="#000000" points="383.73,-278 387.51,-287.9 390.72,-277.8 383.73,-278"/>
+</g>
+<!-- SetHash&#45;&gt;Setty -->
+<g id="edge25" class="edge">
+<title>SetHash&#45;&gt;Setty</title>
+<path fill="none" stroke="#6666ff" d="M366.03,-250.54C353.33,-260.41 336.74,-273.31 322.9,-284.08"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="320.43,-281.56 314.69,-290.46 324.73,-287.09 320.43,-281.56"/>
+</g>
+</g>
+</svg>
+
+  <p class="fallback">
+    <a
+      rel="alternate"
+      href="/images/type-graph-Associative.svg"
+      type="image/svg+xml"
+      >Expand above chart</a
+    >
+  </p>
+</figure>
+
+        </div>
+    </div>
+
+    
+
+    <footer class="pretty-box yellow">
+        <p>
+            Generated from <a href="https://github.com/Raku/doc/tree/master/docs/Type/Associative.pod6">https://github.com/Raku/doc/tree/master/docs/Type/Associative.pod6</a>.
+        </p>
+        <p>
+            This is a work in progress to document Raku (formerly known as Perl 6), and
+            known to be incomplete.
+        </p>
+        <p>
+            <a href="https://github.com/raku/doc/blob/master/CONTRIBUTING.md#reporting-bugs">
+                Please report any issues
+            </a>
+            Your contribution is appreciated.
+        </p>
+        <p>
+            This documentation is provided under the terms of the
+            <a href="https://raw.githubusercontent.com/raku/doc/master/LICENSE">
+                Artistic License 2.0
+            </a>. The Camelia image is
+            <a href="https://raw.githubusercontent.com/raku/mu/master/misc/camelia.txt">
+                copyright © 2009 by Larry Wall.
+            </a>
+            <!-- CREDITS -->
+            <!--External Link Image by Zapyon, CCA-SA 4.0. Derived from Wikimedia Foundation https://commons.wikimedia.org/wiki/File:External-link-04-bold-12x12.svg -->
+        </p>
+    </footer>
+
+    <script type="text/javascript" src="/Documentable/integration-test/js/app.js?v=1"></script>
+    <script type="text/javascript" src="/Documentable/integration-test/js/search.js?v=3"></script>
+</body>
+</html>
+

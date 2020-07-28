@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>role X::IO</title>
+    <meta charset="UTF-8"/>
+    <meta name=viewport content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/Documentable/integration-test/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" type="text/css" href="/Documentable/integration-test/css/app.css" media="screen" title="default" />
+    <noscript> <style> #search { visibility: hidden; } </style> </noscript>
+</head>
+
+<body class="pod">
+
+    <div id="___top"></div>
+
+    <div id="header" class="pretty-box green">
+
+        <a href="/Documentable/integration-test/">
+            <img src="/Documentable/integration-test/images/Camelia.svg"alt="»ö«"id="logo"width="62"height="48"/> &nbsp;Raku Documentation
+        </a>
+
+        <div id="search" class="ui-widget">
+            <div class="green">
+                <input placeholder="Loading..." id="query" accesskey="f" title="Enter term to search for (hit Esc to focus)"/>
+            </div>
+            <p id="not-found-message">
+                Not in Index (<a href="" id="try-web-search">try site search</a>)
+            </p>
+        </div>
+        
+        <div class="menu">
+            
+            <div class="menu-items dark-green">
+                <a class='menu-item darker-green' href='https://raku.org'><strong>Raku homepage</strong></a>
+                    <a class="menu-item " href="/Documentable/integration-test/language.html"> Language </a>
+                    <a class="menu-item selected darker-green" href="/Documentable/integration-test/type.html"> Types </a>
+                    <a class="menu-item " href="/Documentable/integration-test/routine.html"> Routines </a>
+                    <a class="menu-item " href="https://webchat.freenode.net/?channels=#raku"> Chat with us </a>
+            </div>
+            
+            <div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green"><div class="menu-items darker-green">
+                    <a class="menu-item" href="/Documentable/integration-test/type.html"> All </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-basic.html"> Basic </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-html-generation.html"> HTML Generation </a>
+                    <a class="menu-item" href="/Documentable/integration-test/type-exception.html"> Exceptions </a>
+            </div></div></div></div>
+        
+        </div>
+    </div>
+
+    <div id="content" class="pretty-box yellow content_fragment">
+
+        <div align="right" style="display:;">
+            <button title="Edit this page"  class="pencil" onclick="location='https://github.com/Raku/doc/tree/master/docs/Type/X/IO.pod6'">
+                <svg width="14px" height="16px" viewBox="0 0 14 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs></defs>
+                    <g id="Octicons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                        <g id="pencil" fill="#000000">
+                            <path d="M0,12 L0,15 L3,15 L11,7 L8,4 L0,12 L0,12 Z M3,14 L1,14 L1,12 L2,12 L2,13 L3,13 L3,14 L3,14 Z M13.3,4.7 L12,6 L9,3 L10.3,1.7 C10.69,1.31 11.32,1.31 11.71,1.7 L13.3,3.29 C13.69,3.68 13.69,4.31 13.3,4.7 L13.3,4.7 Z" id="Shape"></path>
+                        </g>
+                    </g>
+                </svg>
+            </button>
+        </div>
+
+        <h1 class="title">role X::IO</h1>
+        <p class="subtitle">IO related error</p>
+
+        <nav class="indexgroup">
+<table id="TOC">
+<caption><h2 id="TOC_Title">Table of Contents</h2></caption>
+     <tr class="toc-level-1"><td class="toc-number">1</td><td class="toc-text"><a href="#Type_Graph">Type Graph</a></td></tr>
+  <tr class="toc-level-1"><td class="toc-number">2</td><td class="toc-text"><a href="#Routines_supplied_by_role_X::OS">Routines supplied by role X::OS</a></td></tr>
+    <tr class="toc-level-2"><td class="toc-number">3.1</td><td class="toc-text"><a href="#(X::OS)_method_os-error">(X::OS) method os-error</a></td></tr>
+   <tr class="toc-level-1"><td class="toc-number">3</td><td class="toc-text"><a href="#Routines_supplied_by_class_Exception">Routines supplied by class Exception</a></td></tr>
+    <tr class="toc-level-2"><td class="toc-number">3.2</td><td class="toc-text"><a href="#(Exception)_method_message">(Exception) method message</a></td></tr>
+      <tr class="toc-level-2"><td class="toc-number">3.3</td><td class="toc-text"><a href="#(Exception)_method_backtrace">(Exception) method backtrace</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">3.4</td><td class="toc-text"><a href="#(Exception)_method_throw">(Exception) method throw</a></td></tr>
+     <tr class="toc-level-2"><td class="toc-number">3.5</td><td class="toc-text"><a href="#(Exception)_method_resume">(Exception) method resume</a></td></tr>
+         <tr class="toc-level-2"><td class="toc-number">3.6</td><td class="toc-text"><a href="#(Exception)_method_rethrow">(Exception) method rethrow</a></td></tr>
+       <tr class="toc-level-2"><td class="toc-number">3.7</td><td class="toc-text"><a href="#(Exception)_routine_fail">(Exception) routine fail</a></td></tr>
+                                   <tr class="toc-level-2"><td class="toc-number">3.8</td><td class="toc-text"><a href="#(Exception)_method_gist">(Exception) method gist</a></td></tr>
+     <tr class="toc-level-2"><td class="toc-number">3.9</td><td class="toc-text"><a href="#(Exception)_routine_die">(Exception) routine die</a></td></tr>
+                                                       <tr class="toc-level-2"><td class="toc-number">3.10</td><td class="toc-text"><a href="#(Exception)_sub_warn">(Exception) sub warn</a></td></tr>
+                   
+</table>
+</nav>
+
+        <div class="pod-body ">
+            <pre class="pod-block-code">role X::IO does X::OS {}</pre>
+<p>Common role for IO related errors.</p>
+<p>This role does not provide any additional methods.</p>
+<h1 id="Type_Graph"><a class="u" href="#___top" title="go to top of document">Type Graph</a></h1>
+<figure>
+  <figcaption>Type relations for <code>X::IO</code></figcaption>
+  <svg width="2067pt" height="404pt"
+ viewBox="0.00 0.00 2067.34 404.00" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 400)">
+<title>perl6&#45;type&#45;graph</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-400 2063.34,-400 2063.34,4 -4,4"/>
+<!-- X::IO -->
+<g id="node1" class="node">
+<title>X::IO</title>
+<g id="a_node1"><a xlink:href="/type/X::IO" xlink:title="X::IO">
+<ellipse fill="none" stroke="#6666ff" cx="981.54" cy="-90" rx="35.19" ry="18"/>
+<text text-anchor="middle" x="981.54" y="-86.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">X::IO</text>
+</a>
+</g>
+</g>
+<!-- Exception -->
+<g id="node4" class="node">
+<title>Exception</title>
+<g id="a_node4"><a xlink:href="/type/Exception" xlink:title="Exception">
+<ellipse fill="none" stroke="#000000" cx="1152.54" cy="-234" rx="54.69" ry="18"/>
+<text text-anchor="middle" x="1152.54" y="-230.3" font-family="FreeSans" font-size="14.00" fill="#000000">Exception</text>
+</a>
+</g>
+</g>
+<!-- X::IO&#45;&gt;Exception -->
+<g id="edge1" class="edge">
+<title>X::IO&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M993.47,-107.32C1012.23,-133.02 1046.54,-180 1046.54,-180 1046.54,-180 1084.26,-198.86 1114.7,-214.08"/>
+<polygon fill="#000000" stroke="#000000" points="1113.35,-217.32 1123.86,-218.66 1116.48,-211.05 1113.35,-217.32"/>
+</g>
+<!-- X::OS -->
+<g id="node5" class="node">
+<title>X::OS</title>
+<g id="a_node5"><a xlink:href="/type/X::OS" xlink:title="X::OS">
+<ellipse fill="none" stroke="#6666ff" cx="959.54" cy="-162" rx="35.19" ry="18"/>
+<text text-anchor="middle" x="959.54" y="-158.3" font-family="FreeSans" font-size="14.00" fill="#6666ff">X::OS</text>
+</a>
+</g>
+</g>
+<!-- X::IO&#45;&gt;X::OS -->
+<g id="edge38" class="edge">
+<title>X::IO&#45;&gt;X::OS</title>
+<path fill="none" stroke="#6666ff" d="M976.22,-107.95C973.77,-115.74 970.8,-125.18 968.05,-133.92"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="964.63,-133.14 964.97,-143.72 971.31,-135.23 964.63,-133.14"/>
+</g>
+<!-- Mu -->
+<g id="node2" class="node">
+<title>Mu</title>
+<g id="a_node2"><a xlink:href="/type/Mu" xlink:title="Mu">
+<ellipse fill="none" stroke="#000000" cx="1152.54" cy="-378" rx="27" ry="18"/>
+<text text-anchor="middle" x="1152.54" y="-374.3" font-family="FreeSans" font-size="14.00" fill="#000000">Mu</text>
+</a>
+</g>
+</g>
+<!-- Any -->
+<g id="node3" class="node">
+<title>Any</title>
+<g id="a_node3"><a xlink:href="/type/Any" xlink:title="Any">
+<ellipse fill="none" stroke="#000000" cx="1152.54" cy="-306" rx="27" ry="18"/>
+<text text-anchor="middle" x="1152.54" y="-302.3" font-family="FreeSans" font-size="14.00" fill="#000000">Any</text>
+</a>
+</g>
+</g>
+<!-- Any&#45;&gt;Mu -->
+<g id="edge2" class="edge">
+<title>Any&#45;&gt;Mu</title>
+<path fill="none" stroke="#000000" d="M1152.54,-324.3C1152.54,-332.02 1152.54,-341.29 1152.54,-349.89"/>
+<polygon fill="#000000" stroke="#000000" points="1149.04,-349.9 1152.54,-359.9 1156.04,-349.9 1149.04,-349.9"/>
+</g>
+<!-- Exception&#45;&gt;Any -->
+<g id="edge3" class="edge">
+<title>Exception&#45;&gt;Any</title>
+<path fill="none" stroke="#000000" d="M1152.54,-252.3C1152.54,-260.02 1152.54,-269.29 1152.54,-277.89"/>
+<polygon fill="#000000" stroke="#000000" points="1149.04,-277.9 1152.54,-287.9 1156.04,-277.9 1149.04,-277.9"/>
+</g>
+<!-- X::OS&#45;&gt;Exception -->
+<g id="edge4" class="edge">
+<title>X::OS&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M987.61,-173.18C1019.09,-184.6 1070.58,-203.27 1107.66,-216.72"/>
+<polygon fill="#000000" stroke="#000000" points="1106.64,-220.07 1117.24,-220.19 1109.03,-213.49 1106.64,-220.07"/>
+</g>
+<!-- X::IO::Mkdir -->
+<g id="node6" class="node">
+<title>X::IO::Mkdir</title>
+<g id="a_node6"><a xlink:href="/type/X::IO::Mkdir" xlink:title="X::IO::Mkdir">
+<ellipse fill="none" stroke="#000000" cx="69.54" cy="-18" rx="69.59" ry="18"/>
+<text text-anchor="middle" x="69.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Mkdir</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Mkdir&#45;&gt;X::IO -->
+<g id="edge39" class="edge">
+<title>X::IO::Mkdir&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M121.36,-30.15C136.25,-33.35 148.54,-36 148.54,-36 148.54,-36 763.77,-75.14 936.77,-86.15"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="936.61,-89.65 946.81,-86.79 937.05,-82.66 936.61,-89.65"/>
+</g>
+<!-- X::IO::Mkdir&#45;&gt;Exception -->
+<g id="edge5" class="edge">
+<title>X::IO::Mkdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M109.33,-32.87C227.85,-71.92 569.54,-180 569.54,-180 569.54,-180 939.96,-214.2 1090.33,-227.66"/>
+<polygon fill="#000000" stroke="#000000" points="1090.07,-231.15 1100.34,-228.55 1090.69,-224.17 1090.07,-231.15"/>
+</g>
+<!-- X::IO::Mkdir&#45;&gt;Exception -->
+<g id="edge6" class="edge">
+<title>X::IO::Mkdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M114.26,-31.9C240.12,-70.11 587.54,-180 587.54,-180 587.54,-180 944.16,-212.93 1090.8,-226.88"/>
+<polygon fill="#000000" stroke="#000000" points="1090.7,-230.38 1100.99,-227.85 1091.37,-223.41 1090.7,-230.38"/>
+</g>
+<!-- X::IO::Move -->
+<g id="node7" class="node">
+<title>X::IO::Move</title>
+<g id="a_node7"><a xlink:href="/type/X::IO::Move" xlink:title="X::IO::Move">
+<ellipse fill="none" stroke="#000000" cx="221.54" cy="-18" rx="64.19" ry="18"/>
+<text text-anchor="middle" x="221.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Move</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Move&#45;&gt;X::IO -->
+<g id="edge40" class="edge">
+<title>X::IO::Move&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M269.42,-30.15C283.18,-33.35 294.54,-36 294.54,-36 294.54,-36 783.92,-73.75 936.6,-85.53"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="936.76,-89.06 947,-86.34 937.3,-82.08 936.76,-89.06"/>
+</g>
+<!-- X::IO::Move&#45;&gt;Exception -->
+<g id="edge7" class="edge">
+<title>X::IO::Move&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M257.49,-33.01C364.48,-72.18 672.54,-180 672.54,-180 672.54,-180 961.66,-212.53 1091.19,-226.62"/>
+<polygon fill="#000000" stroke="#000000" points="1091.03,-230.12 1101.35,-227.72 1091.79,-223.17 1091.03,-230.12"/>
+</g>
+<!-- X::IO::Move&#45;&gt;Exception -->
+<g id="edge8" class="edge">
+<title>X::IO::Move&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M262.74,-32.04C377.31,-70.37 690.54,-180 690.54,-180 690.54,-180 966.61,-211.06 1092,-225.63"/>
+<polygon fill="#000000" stroke="#000000" points="1091.87,-229.14 1102.2,-226.82 1092.68,-222.18 1091.87,-229.14"/>
+</g>
+<!-- X::IO::Chdir -->
+<g id="node8" class="node">
+<title>X::IO::Chdir</title>
+<g id="a_node8"><a xlink:href="/type/X::IO::Chdir" xlink:title="X::IO::Chdir">
+<ellipse fill="none" stroke="#000000" cx="373.54" cy="-18" rx="69.59" ry="18"/>
+<text text-anchor="middle" x="373.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Chdir</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Chdir&#45;&gt;X::IO -->
+<g id="edge41" class="edge">
+<title>X::IO::Chdir&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M425.36,-30.15C440.25,-33.35 452.54,-36 452.54,-36 452.54,-36 809.66,-71.78 937.06,-84.54"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="936.94,-88.05 947.24,-85.56 937.64,-81.08 936.94,-88.05"/>
+</g>
+<!-- X::IO::Chdir&#45;&gt;Exception -->
+<g id="edge9" class="edge">
+<title>X::IO::Chdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M406.35,-34C500.09,-73.97 761.54,-180 761.54,-180 761.54,-180 982.99,-210.72 1092.65,-225.39"/>
+<polygon fill="#000000" stroke="#000000" points="1092.2,-228.86 1102.58,-226.71 1093.13,-221.92 1092.2,-228.86"/>
+</g>
+<!-- X::IO::Chdir&#45;&gt;Exception -->
+<g id="edge10" class="edge">
+<title>X::IO::Chdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M412.15,-33.01C513.67,-72.18 779.54,-180 779.54,-180 779.54,-180 988.73,-209.02 1093.86,-224.12"/>
+<polygon fill="#000000" stroke="#000000" points="1093.61,-227.61 1104,-225.57 1094.6,-220.69 1093.61,-227.61"/>
+</g>
+<!-- X::IO::Link -->
+<g id="node9" class="node">
+<title>X::IO::Link</title>
+<g id="a_node9"><a xlink:href="/type/X::IO::Link" xlink:title="X::IO::Link">
+<ellipse fill="none" stroke="#000000" cx="525.54" cy="-18" rx="64.19" ry="18"/>
+<text text-anchor="middle" x="525.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Link</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Link&#45;&gt;X::IO -->
+<g id="edge42" class="edge">
+<title>X::IO::Link&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M573.42,-30.15C587.18,-33.35 598.54,-36 598.54,-36 598.54,-36 837.24,-69.03 937.76,-82.94"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="937.51,-86.44 947.89,-84.34 938.46,-79.51 937.51,-86.44"/>
+</g>
+<!-- X::IO::Link&#45;&gt;Exception -->
+<g id="edge11" class="edge">
+<title>X::IO::Link&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M551.97,-34.58C626.78,-74.99 833.54,-180 833.54,-180 833.54,-180 1001.94,-208.79 1094.11,-223.93"/>
+<polygon fill="#000000" stroke="#000000" points="1093.7,-227.41 1104.14,-225.57 1094.83,-220.5 1093.7,-227.41"/>
+</g>
+<!-- X::IO::Link&#45;&gt;Exception -->
+<g id="edge12" class="edge">
+<title>X::IO::Link&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M558.37,-33.57C641.27,-73.2 851.54,-180 851.54,-180 851.54,-180 1009.13,-206.94 1096.33,-222.41"/>
+<polygon fill="#000000" stroke="#000000" points="1095.88,-225.88 1106.34,-224.19 1097.11,-218.99 1095.88,-225.88"/>
+</g>
+<!-- X::IO::Chmod -->
+<g id="node10" class="node">
+<title>X::IO::Chmod</title>
+<g id="a_node10"><a xlink:href="/type/X::IO::Chmod" xlink:title="X::IO::Chmod">
+<ellipse fill="none" stroke="#000000" cx="677.54" cy="-18" rx="69.59" ry="18"/>
+<text text-anchor="middle" x="677.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Chmod</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Chmod&#45;&gt;X::IO -->
+<g id="edge43" class="edge">
+<title>X::IO::Chmod&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M727.74,-30.56C787.12,-44.23 884.85,-66.74 940.11,-79.46"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="939.38,-82.88 949.92,-81.72 940.96,-76.06 939.38,-82.88"/>
+</g>
+<!-- X::IO::Chmod&#45;&gt;Exception -->
+<g id="edge13" class="edge">
+<title>X::IO::Chmod&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M695.36,-35.62C745.67,-76.76 883.54,-180 883.54,-180 883.54,-180 1016.99,-207.2 1095.99,-222.63"/>
+<polygon fill="#000000" stroke="#000000" points="1095.33,-226.07 1105.81,-224.54 1096.66,-219.2 1095.33,-226.07"/>
+</g>
+<!-- X::IO::Chmod&#45;&gt;Exception -->
+<g id="edge14" class="edge">
+<title>X::IO::Chmod&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M703.26,-35.03C762.33,-75.75 901.54,-180 901.54,-180 901.54,-180 1025.4,-205.25 1099.18,-220.89"/>
+<polygon fill="#000000" stroke="#000000" points="1098.73,-224.37 1109.24,-223.03 1100.19,-217.53 1098.73,-224.37"/>
+</g>
+<!-- X::IO::Cwd -->
+<g id="node11" class="node">
+<title>X::IO::Cwd</title>
+<g id="a_node11"><a xlink:href="/type/X::IO::Cwd" xlink:title="X::IO::Cwd">
+<ellipse fill="none" stroke="#000000" cx="824.54" cy="-18" rx="59.59" ry="18"/>
+<text text-anchor="middle" x="824.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Cwd</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Cwd&#45;&gt;X::IO -->
+<g id="edge44" class="edge">
+<title>X::IO::Cwd&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M856.69,-33.33C882.82,-44.98 919.62,-61.39 946.5,-73.37"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="945.35,-76.7 955.91,-77.57 948.2,-70.3 945.35,-76.7"/>
+</g>
+<!-- X::IO::Cwd&#45;&gt;Exception -->
+<g id="edge15" class="edge">
+<title>X::IO::Cwd&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M829.84,-36.23C848.76,-77.76 906.54,-180 906.54,-180 906.54,-180 1024.38,-206.35 1097.03,-221.89"/>
+<polygon fill="#000000" stroke="#000000" points="1096.45,-225.35 1106.96,-224.01 1097.91,-218.5 1096.45,-225.35"/>
+</g>
+<!-- X::IO::Cwd&#45;&gt;Exception -->
+<g id="edge16" class="edge">
+<title>X::IO::Cwd&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M838.32,-35.62C866.19,-76.76 924.54,-180 924.54,-180 924.54,-180 1033.22,-204.3 1100.59,-219.99"/>
+<polygon fill="#000000" stroke="#000000" points="1100.09,-223.47 1110.62,-222.34 1101.68,-216.65 1100.09,-223.47"/>
+</g>
+<!-- X::IO::Symlink -->
+<g id="node12" class="node">
+<title>X::IO::Symlink</title>
+<g id="a_node12"><a xlink:href="/type/X::IO::Symlink" xlink:title="X::IO::Symlink">
+<ellipse fill="none" stroke="#000000" cx="981.54" cy="-18" rx="79.09" ry="18"/>
+<text text-anchor="middle" x="981.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Symlink</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Symlink&#45;&gt;X::IO -->
+<g id="edge45" class="edge">
+<title>X::IO::Symlink&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M981.54,-36.3C981.54,-44.02 981.54,-53.29 981.54,-61.89"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="978.04,-61.9 981.54,-71.9 985.04,-61.9 978.04,-61.9"/>
+</g>
+<!-- X::IO::Symlink&#45;&gt;Exception -->
+<g id="edge17" class="edge">
+<title>X::IO::Symlink&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M982.02,-36.06C990.57,-51.55 1007.54,-72 1007.54,-72 1007.54,-72 1081.39,-165.61 1124.44,-210.07"/>
+<polygon fill="#000000" stroke="#000000" points="1122.05,-212.64 1131.58,-217.27 1127.02,-207.71 1122.05,-212.64"/>
+</g>
+<!-- X::IO::Symlink&#45;&gt;Exception -->
+<g id="edge18" class="edge">
+<title>X::IO::Symlink&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M995.47,-35.77C1008.36,-51.3 1025.54,-72 1025.54,-72 1025.54,-72 1097.42,-163.12 1133.03,-208.26"/>
+<polygon fill="#000000" stroke="#000000" points="1130.49,-210.69 1139.43,-216.38 1135.99,-206.36 1130.49,-210.69"/>
+</g>
+<!-- X::IO::Symlink&#45;&gt;Exception -->
+<g id="edge19" class="edge">
+<title>X::IO::Symlink&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1008.42,-35.19C1025.92,-50.78 1043.54,-72 1043.54,-72 1043.54,-72 1114.13,-161.48 1142.6,-207.03"/>
+<polygon fill="#000000" stroke="#000000" points="1139.7,-209 1147.84,-215.77 1145.7,-205.39 1139.7,-209"/>
+</g>
+<!-- X::IO::Rename -->
+<g id="node13" class="node">
+<title>X::IO::Rename</title>
+<g id="a_node13"><a xlink:href="/type/X::IO::Rename" xlink:title="X::IO::Rename">
+<ellipse fill="none" stroke="#000000" cx="1152.54" cy="-18" rx="74.19" ry="18"/>
+<text text-anchor="middle" x="1152.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Rename</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Rename&#45;&gt;X::IO -->
+<g id="edge46" class="edge">
+<title>X::IO::Rename&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M1116.28,-33.85C1087.21,-45.74 1046.63,-62.36 1017.61,-74.23"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1016.18,-71.04 1008.25,-78.07 1018.83,-77.52 1016.18,-71.04"/>
+</g>
+<!-- X::IO::Rename&#45;&gt;Exception -->
+<g id="edge20" class="edge">
+<title>X::IO::Rename&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1144.79,-36.15C1137.7,-73.26 1137.17,-161.25 1143.2,-205.95"/>
+<polygon fill="#000000" stroke="#000000" points="1139.79,-206.75 1144.83,-216.06 1146.7,-205.64 1139.79,-206.75"/>
+</g>
+<!-- X::IO::Rename&#45;&gt;Exception -->
+<g id="edge21" class="edge">
+<title>X::IO::Rename&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1152.54,-36.15C1152.54,-73.17 1152.54,-160.82 1152.54,-205.61"/>
+<polygon fill="#000000" stroke="#000000" points="1149.04,-205.77 1152.54,-215.77 1156.04,-205.77 1149.04,-205.77"/>
+</g>
+<!-- X::IO::Rename&#45;&gt;Exception -->
+<g id="edge22" class="edge">
+<title>X::IO::Rename&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1160.3,-36.15C1167.39,-73.26 1167.92,-161.25 1161.88,-205.95"/>
+<polygon fill="#000000" stroke="#000000" points="1158.39,-205.64 1160.26,-216.06 1165.3,-206.75 1158.39,-205.64"/>
+</g>
+<!-- X::IO::DoesNotExist -->
+<g id="node14" class="node">
+<title>X::IO::DoesNotExist</title>
+<g id="a_node14"><a xlink:href="/type/X::IO::DoesNotExist" xlink:title="X::IO::DoesNotExist">
+<ellipse fill="none" stroke="#000000" cx="1347.54" cy="-18" rx="103.18" ry="18"/>
+<text text-anchor="middle" x="1347.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::DoesNotExist</text>
+</a>
+</g>
+</g>
+<!-- X::IO::DoesNotExist&#45;&gt;X::IO -->
+<g id="edge47" class="edge">
+<title>X::IO::DoesNotExist&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M1280.84,-31.76C1206.03,-46.06 1086.96,-68.84 1023.92,-80.9"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1023.09,-77.49 1013.93,-82.81 1024.41,-84.37 1023.09,-77.49"/>
+</g>
+<!-- X::IO::DoesNotExist&#45;&gt;Exception -->
+<g id="edge23" class="edge">
+<title>X::IO::DoesNotExist&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1324.56,-35.79C1283.21,-73.2 1200.39,-163.58 1166.43,-207.79"/>
+<polygon fill="#000000" stroke="#000000" points="1163.49,-205.88 1160.32,-215.99 1169.1,-210.07 1163.49,-205.88"/>
+</g>
+<!-- X::IO::DoesNotExist&#45;&gt;Exception -->
+<g id="edge24" class="edge">
+<title>X::IO::DoesNotExist&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1331.92,-36.15C1297.29,-74.15 1214.04,-165.52 1174.33,-209.09"/>
+<polygon fill="#000000" stroke="#000000" points="1171.59,-206.9 1167.44,-216.65 1176.76,-211.62 1171.59,-206.9"/>
+</g>
+<!-- X::IO::DoesNotExist&#45;&gt;Exception -->
+<g id="edge25" class="edge">
+<title>X::IO::DoesNotExist&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1339.67,-36.15C1312.05,-74.5 1227.92,-167.18 1181.97,-210.27"/>
+<polygon fill="#000000" stroke="#000000" points="1179.39,-207.89 1174.4,-217.23 1184.13,-213.04 1179.39,-207.89"/>
+</g>
+<!-- X::IO::Copy -->
+<g id="node15" class="node">
+<title>X::IO::Copy</title>
+<g id="a_node15"><a xlink:href="/type/X::IO::Copy" xlink:title="X::IO::Copy">
+<ellipse fill="none" stroke="#000000" cx="1533.54" cy="-18" rx="64.19" ry="18"/>
+<text text-anchor="middle" x="1533.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Copy</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Copy&#45;&gt;X::IO -->
+<g id="edge48" class="edge">
+<title>X::IO::Copy&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M1485.43,-30.05C1471.29,-33.3 1459.54,-36 1459.54,-36 1459.54,-36 1144.07,-70.98 1025.7,-84.1"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1025.09,-80.65 1015.54,-85.23 1025.86,-87.61 1025.09,-80.65"/>
+</g>
+<!-- X::IO::Copy&#45;&gt;Exception -->
+<g id="edge26" class="edge">
+<title>X::IO::Copy&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1499.94,-33.43C1420.72,-72.95 1232.54,-180 1232.54,-180 1232.54,-180 1201.69,-196.69 1177.78,-211.34"/>
+<polygon fill="#000000" stroke="#000000" points="1175.66,-208.54 1169.04,-216.81 1179.37,-214.47 1175.66,-208.54"/>
+</g>
+<!-- X::IO::Copy&#45;&gt;Exception -->
+<g id="edge27" class="edge">
+<title>X::IO::Copy&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1506.41,-34.44C1435.58,-74.73 1250.54,-180 1250.54,-180 1250.54,-180 1216.59,-198.36 1188.65,-213.47"/>
+<polygon fill="#000000" stroke="#000000" points="1186.97,-210.4 1179.84,-218.24 1190.3,-216.56 1186.97,-210.4"/>
+</g>
+<!-- X::IO::Copy&#45;&gt;Exception -->
+<g id="edge28" class="edge">
+<title>X::IO::Copy&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1513.54,-35.32C1450.9,-76.25 1268.54,-180 1268.54,-180 1268.54,-180 1230.5,-200.57 1197.47,-216.09"/>
+<polygon fill="#000000" stroke="#000000" points="1195.93,-212.94 1188.32,-220.31 1198.86,-219.3 1195.93,-212.94"/>
+</g>
+<!-- X::IO::Rmdir -->
+<g id="node16" class="node">
+<title>X::IO::Rmdir</title>
+<g id="a_node16"><a xlink:href="/type/X::IO::Rmdir" xlink:title="X::IO::Rmdir">
+<ellipse fill="none" stroke="#000000" cx="1685.54" cy="-18" rx="69.59" ry="18"/>
+<text text-anchor="middle" x="1685.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Rmdir</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Rmdir&#45;&gt;X::IO -->
+<g id="edge49" class="edge">
+<title>X::IO::Rmdir&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M1633.73,-30.15C1618.84,-33.35 1606.54,-36 1606.54,-36 1606.54,-36 1169.22,-73.08 1026.21,-85.21"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1025.71,-81.74 1016.04,-86.07 1026.3,-88.72 1025.71,-81.74"/>
+</g>
+<!-- X::IO::Rmdir&#45;&gt;Exception -->
+<g id="edge29" class="edge">
+<title>X::IO::Rmdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1645.41,-32.87C1545.27,-71.92 1295.54,-180 1295.54,-180 1295.54,-180 1234.8,-200 1192.1,-215.43"/>
+<polygon fill="#000000" stroke="#000000" points="1190.68,-212.22 1182.49,-218.94 1193.08,-218.79 1190.68,-212.22"/>
+</g>
+<!-- X::IO::Rmdir&#45;&gt;Exception -->
+<g id="edge30" class="edge">
+<title>X::IO::Rmdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1651.55,-33.71C1559.71,-73.46 1313.54,-180 1313.54,-180 1313.54,-180 1246.94,-201.93 1199.41,-217.57"/>
+<polygon fill="#000000" stroke="#000000" points="1198.29,-214.26 1189.89,-220.71 1200.48,-220.91 1198.29,-214.26"/>
+</g>
+<!-- X::IO::Rmdir&#45;&gt;Exception -->
+<g id="edge31" class="edge">
+<title>X::IO::Rmdir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1658.06,-34.58C1574.18,-74.99 1331.54,-180 1331.54,-180 1331.54,-180 1258.23,-204.13 1205.02,-219.83"/>
+<polygon fill="#000000" stroke="#000000" points="1203.96,-216.49 1195.34,-222.66 1205.92,-223.21 1203.96,-216.49"/>
+</g>
+<!-- X::IO::Unlink -->
+<g id="node17" class="node">
+<title>X::IO::Unlink</title>
+<g id="a_node17"><a xlink:href="/type/X::IO::Unlink" xlink:title="X::IO::Unlink">
+<ellipse fill="none" stroke="#000000" cx="1847.54" cy="-18" rx="74.19" ry="18"/>
+<text text-anchor="middle" x="1847.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Unlink</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Unlink&#45;&gt;X::IO -->
+<g id="edge50" class="edge">
+<title>X::IO::Unlink&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M1792.64,-30.24C1777.21,-33.41 1764.54,-36 1764.54,-36 1764.54,-36 1193.1,-74.68 1026.57,-85.95"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1025.94,-82.49 1016.2,-86.65 1026.41,-89.47 1025.94,-82.49"/>
+</g>
+<!-- X::IO::Unlink&#45;&gt;Exception -->
+<g id="edge32" class="edge">
+<title>X::IO::Unlink&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1801.47,-32.31C1680.98,-70.89 1368.54,-180 1368.54,-180 1368.54,-180 1265.75,-203.28 1201.67,-218.98"/>
+<polygon fill="#000000" stroke="#000000" points="1200.61,-215.64 1191.73,-221.43 1202.28,-222.44 1200.61,-215.64"/>
+</g>
+<!-- X::IO::Unlink&#45;&gt;Exception -->
+<g id="edge33" class="edge">
+<title>X::IO::Unlink&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1807.04,-33.15C1694.54,-72.43 1386.54,-180 1386.54,-180 1386.54,-180 1275.23,-205.21 1206.15,-220.86"/>
+<polygon fill="#000000" stroke="#000000" points="1205.26,-217.47 1196.28,-223.09 1206.81,-224.3 1205.26,-217.47"/>
+</g>
+<!-- X::IO::Unlink&#45;&gt;Exception -->
+<g id="edge34" class="edge">
+<title>X::IO::Unlink&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1812.97,-34C1708.14,-73.97 1404.54,-180 1404.54,-180 1404.54,-180 1284.48,-207.19 1209.74,-222.62"/>
+<polygon fill="#000000" stroke="#000000" points="1208.61,-219.28 1199.51,-224.72 1210.01,-226.14 1208.61,-219.28"/>
+</g>
+<!-- X::IO::Dir -->
+<g id="node18" class="node">
+<title>X::IO::Dir</title>
+<g id="a_node18"><a xlink:href="/type/X::IO::Dir" xlink:title="X::IO::Dir">
+<ellipse fill="none" stroke="#000000" cx="1999.54" cy="-18" rx="59.59" ry="18"/>
+<text text-anchor="middle" x="1999.54" y="-14.3" font-family="FreeSans" font-size="14.00" fill="#000000">X::IO::Dir</text>
+</a>
+</g>
+</g>
+<!-- X::IO::Dir&#45;&gt;X::IO -->
+<g id="edge51" class="edge">
+<title>X::IO::Dir&#45;&gt;X::IO</title>
+<path fill="none" stroke="#6666ff" d="M1954.68,-30.05C1941.5,-33.3 1930.54,-36 1930.54,-36 1930.54,-36 1214.97,-75.96 1026.56,-86.49"/>
+<polygon fill="#6666ff" stroke="#6666ff" points="1026.23,-83 1016.44,-87.05 1026.62,-89.99 1026.23,-83"/>
+</g>
+<!-- X::IO::Dir&#45;&gt;Exception -->
+<g id="edge35" class="edge">
+<title>X::IO::Dir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1955.18,-30.19C1823.91,-66.7 1449.54,-180 1449.54,-180 1449.54,-180 1293.19,-206.31 1207.09,-221.85"/>
+<polygon fill="#000000" stroke="#000000" points="1206.42,-218.42 1197.21,-223.65 1207.67,-225.3 1206.42,-218.42"/>
+</g>
+<!-- X::IO::Dir&#45;&gt;Exception -->
+<g id="edge36" class="edge">
+<title>X::IO::Dir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1958.68,-31.37C1834.11,-69.07 1467.54,-180 1467.54,-180 1467.54,-180 1300.78,-208.06 1209.93,-223.34"/>
+<polygon fill="#000000" stroke="#000000" points="1209.32,-219.9 1200.04,-225.01 1210.49,-226.8 1209.32,-219.9"/>
+</g>
+<!-- X::IO::Dir&#45;&gt;Exception -->
+<g id="edge37" class="edge">
+<title>X::IO::Dir&#45;&gt;Exception</title>
+<path fill="none" stroke="#000000" d="M1963.09,-32.45C1845.24,-71.14 1485.54,-180 1485.54,-180 1485.54,-180 1307.99,-209.87 1211.87,-224.76"/>
+<polygon fill="#000000" stroke="#000000" points="1211.33,-221.31 1201.98,-226.29 1212.4,-228.22 1211.33,-221.31"/>
+</g>
+</g>
+</svg>
+
+  <p class="fallback">
+    <a
+      rel="alternate"
+      href="/images/type-graph-X%3A%3AIO.svg"
+      type="image/svg+xml"
+      >Expand above chart</a
+    >
+  </p>
+</figure>
+<h1 id="Routines_supplied_by_role_X::OS"><a class="u" href="#___top" title="go to top of document">Routines supplied by role X::OS</a></h1>
+<p>X::IO does role <a href="/Documentable/integration-test/type/X::OS">X::OS</a>, which provides the following routines:</p>
+<h2 id="(X::OS)_method_os-error"><a href="/Documentable/integration-test/type/X::OS#method_os-error">(X::OS) method os-error</a></h2>
+<pre class="pod-block-code">method os-error(--&gt; Str:D)</pre>
+<p>Returns the error as reported by the operating system.</p>
+<h1 id="Routines_supplied_by_class_Exception"><a class="u" href="#___top" title="go to top of document">Routines supplied by class Exception</a></h1>
+<p>X::IO inherits from class <a href="/Documentable/integration-test/type/Exception">Exception</a>, which provides the following routines:</p>
+<h2 id="(Exception)_method_message"><a href="/Documentable/integration-test/type/Exception#method_message">(Exception) method message</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method message(Exception:D: --&gt; Str:D)</pre>
+<p>This is a stub that must be overwritten by subclasses, and should return the exception message.</p>
+<p>Special care should be taken that this method does not produce an exception itself.</p>
+<pre class="pod-block-code">try die &quot;Something bad happened&quot;;
+if ($!) {
+    say $!.message; # OUTPUT: «Something bad happened.␤»
+}</pre>
+<h2 id="(Exception)_method_backtrace"><a href="/Documentable/integration-test/type/Exception#method_backtrace">(Exception) method backtrace</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method backtrace(Exception:D:)</pre>
+<p>Returns the backtrace associated with the exception in a <a href="/Documentable/integration-test/type/Backtrace"><code>Backtrace</code></a> object or an empty string if there is none. Only makes sense on exceptions that have been thrown at least once.</p>
+<pre class="pod-block-code">try die &quot;Something bad happened&quot;;
+with $! { .backtrace.print ; }</pre>
+<h2 id="(Exception)_method_throw"><a href="/Documentable/integration-test/type/Exception#method_throw">(Exception) method throw</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method throw(Exception:D:)</pre>
+<p>Throws the exception.</p>
+<pre class="pod-block-code">my $exception = X::AdHoc.new;    # Totally fine
+try $exception.throw;            # Throws
+if ($!) { #`( some handling ) }; # Suppress the exception</pre>
+<h2 id="(Exception)_method_resume"><a href="/Documentable/integration-test/type/Exception#method_resume">(Exception) method resume</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method resume(Exception:D:)</pre>
+<p>Resumes control flow where <code>.throw</code> left it when handled in a <code>CATCH</code> block.</p>
+<pre class="pod-block-code"># For example, resume control flow for any exception
+CATCH { default { .resume } }</pre>
+<h2 id="(Exception)_method_rethrow"><a href="/Documentable/integration-test/type/Exception#method_rethrow">(Exception) method rethrow</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">method rethrow(Exception:D:)</pre>
+<p>Rethrows an exception that has already been thrown at least once. This is different from <code>throw</code> in that it preserves the original backtrace.</p>
+<pre class="pod-block-code">sub f() { die &#39;Bad&#39; };
+sub g() { try f; CATCH { default { .rethrow } } };
+g;
+CATCH { default { say .backtrace.full } };</pre>
+<h2 id="(Exception)_routine_fail"><a href="/Documentable/integration-test/type/Exception#routine_fail">(Exception) routine fail</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi sub    fail(Exception $e)
+method       fail(Exception:D:)</pre>
+<p>Exits the calling <code>Routine</code> and returns a <a href="/Documentable/integration-test/type/Failure">Failure</a> object wrapping the exception.</p>
+<pre class="pod-block-code"># A custom exception defined
+class ForbiddenWord is Exception {
+    has Str $.word;
+    method message { &quot;This word is forbidden: «$!word»&quot; }
+}
+
+sub say-word ( $word ) {
+    ForbiddenWord.new(:word($word)).fail if $word eq &#39;foo&#39;;
+    $word.say;
+}
+
+my $result = say-word(&quot;foo&quot;);
+say $result.exception;
+</pre>
+<p>The routine form works in the same way, with an alternative syntax: <code>fail ForbiddenWord.new(:word($word))</code>.</p>
+<h2 id="(Exception)_method_gist"><a href="/Documentable/integration-test/type/Exception#method_gist">(Exception) method gist</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi method gist(Exception:D:)</pre>
+<p>Returns whatever the exception printer should produce for this exception. The default implementation returns message and backtrace separated by a newline.</p>
+<pre class="pod-block-code">my $e = X::AdHoc.new(payload =&gt; &quot;This exception is pretty bad&quot;);
+try $e.throw;
+if ($!) { say $!.gist; };
+# OUTPUT: «This exception is pretty bad
+#   in block &lt;unit&gt; at &lt;unknown file&gt; line 1␤»</pre>
+<h2 id="(Exception)_routine_die"><a href="/Documentable/integration-test/type/Exception#routine_die">(Exception) routine die</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi sub die()
+multi sub die(*@message)
+multi sub die(Exception:D $e)
+method    die(Exception:D:)</pre>
+<p>Throws a fatal <a href="/Documentable/integration-test/type/Exception">Exception</a>. The default exception handler prints each element of the list to <a href="/Documentable/integration-test/language/variables#index-entry-%24%2AERR"><code>$*ERR</code></a> (STDERR).</p>
+<pre class="pod-block-code">die &quot;Important reason&quot;;
+</pre>
+<p>If the subroutine form is called without arguments, the value of <a href="/Documentable/integration-test/syntax/$!"><code>$!</code> variable</a> is checked. If it is set to a <a href="/Documentable/integration-test/language/mop#index-entry-syntax_DEFINITE-DEFINITE"><code>.DEFINITE</code></a> value, its value will be used as the <a href="/Documentable/integration-test/type/Exception">Exception</a> to throw if it&#39;s of type <a href="/Documentable/integration-test/type/Exception">Exception</a>, otherwise, it will be used as payload of <a href="/Documentable/integration-test/type/X::AdHoc">X::AdHoc</a> exception. If <code>$!</code> is not <code>.DEFINITE</code>, <a href="/Documentable/integration-test/type/X::AdHoc">X::AdHoc</a> with string <code>&quot;Died&quot;</code> as payload will be thrown.</p>
+<p><code>die</code> will print by default the line number where it happens</p>
+<pre class="pod-block-code">die &quot;Dead&quot;;
+# OUTPUT: «(exit code 1) Dead␤
+# in block &lt;unit&gt; at /tmp/dead.p6 line 1␤␤»
+</pre>
+<p>However, that default behavior is governed at the <code>Exception</code> level and thus can be changed to anything we want by capturing the exception using <code>CATCH</code>. This can be used, for instance, to suppress line numbers.</p>
+<pre class="pod-block-code">CATCH {
+  default {
+    .payload.say
+  }
+};
+die &quot;Dead&quot; # OUTPUT: «Dead␤»
+</pre>
+<h2 id="(Exception)_sub_warn"><a href="/Documentable/integration-test/type/Exception#sub_warn">(Exception) sub warn</a></h2>
+<p>Defined as:</p>
+<pre class="pod-block-code">multi sub warn(*@message)</pre>
+<p>Throws a resumable warning exception, which is considered a control exception, and hence is invisible to most normal exception handlers. The outermost control handler will print the warning to <code>$*ERR</code>. After printing the warning, the exception is resumed where it was thrown. To override this behavior, catch the exception in a <code>CONTROL</code> block. A <code>quietly {...}</code> block is the opposite of a <code>try {...}</code> block in that it will suppress any warnings but pass fatal exceptions through.</p>
+<p>To simply print to <code>$*ERR</code>, please use <code>note</code> instead. <code>warn</code> should be reserved for use in threatening situations when you don&#39;t quite want to throw an exception.</p>
+<pre class="pod-block-code">warn &quot;Warning message&quot;;</pre>
+
+        </div>
+    </div>
+
+    
+
+    <footer class="pretty-box yellow">
+        <p>
+            Generated from <a href="https://github.com/Raku/doc/tree/master/docs/Type/X/IO.pod6">https://github.com/Raku/doc/tree/master/docs/Type/X/IO.pod6</a>.
+        </p>
+        <p>
+            This is a work in progress to document Raku (formerly known as Perl 6), and
+            known to be incomplete.
+        </p>
+        <p>
+            <a href="https://github.com/raku/doc/blob/master/CONTRIBUTING.md#reporting-bugs">
+                Please report any issues
+            </a>
+            Your contribution is appreciated.
+        </p>
+        <p>
+            This documentation is provided under the terms of the
+            <a href="https://raw.githubusercontent.com/raku/doc/master/LICENSE">
+                Artistic License 2.0
+            </a>. The Camelia image is
+            <a href="https://raw.githubusercontent.com/raku/mu/master/misc/camelia.txt">
+                copyright © 2009 by Larry Wall.
+            </a>
+            <!-- CREDITS -->
+            <!--External Link Image by Zapyon, CCA-SA 4.0. Derived from Wikimedia Foundation https://commons.wikimedia.org/wiki/File:External-link-04-bold-12x12.svg -->
+        </p>
+    </footer>
+
+    <script type="text/javascript" src="/Documentable/integration-test/js/app.js?v=1"></script>
+    <script type="text/javascript" src="/Documentable/integration-test/js/search.js?v=3"></script>
+</body>
+</html>
+
